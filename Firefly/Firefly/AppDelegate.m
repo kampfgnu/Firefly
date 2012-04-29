@@ -8,23 +8,36 @@
 
 #import "AppDelegate.h"
 
-#import "FirstViewController.h"
+#import "ActiveRecordHelpers.h"
 
-#import "SecondViewController.h"
+#import "FileBrowserViewController.h"
+#import "PlayerViewController.h"
+#import "SettingsViewController.h"
+#import "StreamerViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [ActiveRecordHelpers setupCoreDataStack];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
-    UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+
+    FileBrowserViewController *fileBrowserViewController = [[FileBrowserViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:fileBrowserViewController];
+    
+//    PlayerViewController *playerViewController = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
+    StreamerViewController *streamerViewController = [[StreamerViewController alloc] initWithNibName:nil bundle:nil];
+//    fileBrowserViewController.playerViewController = playerViewController;
+    fileBrowserViewController.streamerViewController = streamerViewController;
+    
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:nc, streamerViewController, settingsViewController, nil];
+    
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
