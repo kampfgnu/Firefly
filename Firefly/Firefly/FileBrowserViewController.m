@@ -86,9 +86,11 @@ $synthesize(streamerViewController);
     
     self.subfolders = [Folder findAllWithPredicate:[NSPredicate predicateWithFormat:@"parent = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
     
-    self.songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
+    self.songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"track" ascending:YES]]];
     
     [self.tableView reloadData];
+    
+    self.title = self.folder.name;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -112,7 +114,7 @@ $synthesize(streamerViewController);
     if (indexPath.section == 0) {
         return 40;
     }
-    else return 90;
+    else return 140;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,7 +137,7 @@ $synthesize(streamerViewController);
     else {
         Song *song = [self.songs objectAtIndex:indexPath.row];
         cell.textLabel.text = song.title;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Artist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nLength: %f", song.artist, song.album, song.genre, song.filename, [song.song_length intValue]/60000.f];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nLength: %f", [song.track intValue], song.artist, song.album, song.genre, song.filename, [song.song_length intValue]/60000.f];
     }
     return cell;
 }
