@@ -108,14 +108,24 @@ $synthesize(streamerViewController);
     return section == 0 ? @"Folders" : @"Songs";
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 40;
+    }
+    else return 90;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EmptyCell";
 
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.textLabel.numberOfLines = 0;
+        cell.detailTextLabel.numberOfLines = 0;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
     }
     
     if (indexPath.section == 0) {
@@ -125,6 +135,7 @@ $synthesize(streamerViewController);
     else {
         Song *song = [self.songs objectAtIndex:indexPath.row];
         cell.textLabel.text = song.title;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Artist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nLength: %f", song.artist, song.album, song.genre, song.filename, [song.song_length intValue]/60000.f];
     }
     return cell;
 }

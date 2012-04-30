@@ -11,6 +11,6 @@
 @interface Db : NSObject
 
 - (id)initWithName:(NSString *)databaseName;
-- (void)buildDatabase;
+- (void)buildDatabase:(void(^)(float))callback;
 
 @end
