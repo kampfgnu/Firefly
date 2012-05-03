@@ -41,7 +41,6 @@
 		FC04EBE4154AB2EA002966F7 /* AFNetworking.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */; };
 		FC04EBF4154AB2EA002966F7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBB0154AB2EA002966F7 /* LICENSE */; };
 		FC04EC00154AB2EA002966F7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBD0154AB2EA002966F7 /* README.md */; };
-		FC43A5EE15511C3400310EAD /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = FC43A5ED15511C3400310EAD /* UIView+Sizes.m */; };
 		FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */; };
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
@@ -58,9 +57,7 @@
 		FCCD9E7C154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E73154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m */; };
 		FCCD9E80154BEA0F001CD448 /* NSNumberAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */; };
 		FCCD9E9E154BFF80001CD448 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E9D154BFF80001CD448 /* Folder.m */; };
-		FCE6A622154E809B0027A21A /* NSFileManager+KGiOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6A621154E809B0027A21A /* NSFileManager+KGiOSHelper.m */; };
 		FCE6A62C154E9E5F0027A21A /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6A62B154E9E5F0027A21A /* Song.m */; };
-		FCFDDD9D15513BEF00EBD678 /* KGWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDD9C15513BEF00EBD678 /* KGWindow.m */; };
 		FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA315513FC400EBD678 /* Playlist.m */; };
 		FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA9155140C000EBD678 /* MyPlaylist.m */; };
 /* End PBXBuildFile section */
@@ -120,8 +117,6 @@
 		FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AFNetworking.xcworkspace; sourceTree = "<group>"; };
 		FC04EBB0154AB2EA002966F7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC04EBD0154AB2EA002966F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		FC43A5EC15511C3400310EAD /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
-		FC43A5ED15511C3400310EAD /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBF3D9C154C6B5900C4FC97 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -153,13 +148,8 @@
 		FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberAdditions.m; sourceTree = "<group>"; };
 		FCCD9E9C154BFF80001CD448 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		FCCD9E9D154BFF80001CD448 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
-		FCE6A61F154E809B0027A21A /* KGDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGDefines.h; sourceTree = "<group>"; };
-		FCE6A620154E809B0027A21A /* NSFileManager+KGiOSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+KGiOSHelper.h"; sourceTree = "<group>"; };
-		FCE6A621154E809B0027A21A /* NSFileManager+KGiOSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+KGiOSHelper.m"; sourceTree = "<group>"; };
 		FCE6A62A154E9E5F0027A21A /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		FCE6A62B154E9E5F0027A21A /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
-		FCFDDD9B15513BEF00EBD678 /* KGWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWindow.h; path = ../../../../../iOS_frameworks/iOSHelper/iOSHelper/Classes/KGWindow.h; sourceTree = "<group>"; };
-		FCFDDD9C15513BEF00EBD678 /* KGWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWindow.m; path = ../../../../../iOS_frameworks/iOSHelper/iOSHelper/Classes/KGWindow.m; sourceTree = "<group>"; };
 		FCFDDDA215513FC400EBD678 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		FCFDDDA315513FC400EBD678 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
 		FCFDDDA8155140C000EBD678 /* MyPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlaylist.h; sourceTree = "<group>"; };
@@ -226,7 +216,6 @@
 		FC04EB40154AABDC002966F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FCE6A61E154E809B0027A21A /* iOSHelper */,
 				FC00C1DD154D3652002C05D7 /* CFNetwork.framework */,
 				FCBF3DB3154C701A00C4FC97 /* AVFoundation.framework */,
 				FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */,
@@ -383,21 +372,6 @@
 			path = "Firefly/Database/activerecord-coredata";
 			sourceTree = "<group>";
 		};
-		FCE6A61E154E809B0027A21A /* iOSHelper */ = {
-			isa = PBXGroup;
-			children = (
-				FCFDDD9B15513BEF00EBD678 /* KGWindow.h */,
-				FCFDDD9C15513BEF00EBD678 /* KGWindow.m */,
-				FC43A5EC15511C3400310EAD /* UIView+Sizes.h */,
-				FC43A5ED15511C3400310EAD /* UIView+Sizes.m */,
-				FCE6A61F154E809B0027A21A /* KGDefines.h */,
-				FCE6A620154E809B0027A21A /* NSFileManager+KGiOSHelper.h */,
-				FCE6A621154E809B0027A21A /* NSFileManager+KGiOSHelper.m */,
-			);
-			name = iOSHelper;
-			path = ../iOSHelper/iOSHelper/Classes;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -501,10 +475,7 @@
 				FC00C1C6154D2E8A002C05D7 /* AudioStreamer.m in Sources */,
 				FC00C1C8154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m in Sources */,
 				FC00C1E1154D37A5002C05D7 /* StreamerViewController.m in Sources */,
-				FCE6A622154E809B0027A21A /* NSFileManager+KGiOSHelper.m in Sources */,
 				FCE6A62C154E9E5F0027A21A /* Song.m in Sources */,
-				FC43A5EE15511C3400310EAD /* UIView+Sizes.m in Sources */,
-				FCFDDD9D15513BEF00EBD678 /* KGWindow.m in Sources */,
 				FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */,
 				FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */,
 			);
@@ -591,10 +562,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../SimpleData/Test/google-toolbox-for-mac/TigerGcov\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -606,10 +573,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../SimpleData/Test/google-toolbox-for-mac/TigerGcov\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

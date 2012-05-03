@@ -1,9 +1,6 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
 	url = https://github.com/gowalla/AFNetworking.git
-[submodule "SimpleData"]
-	path = SimpleData
-	url = https://github.com/briancollins/SimpleData.git
 [submodule "AudioStreamer"]
 	path = AudioStreamer
 	url = https://github.com/mattgallagher/AudioStreamer.git
