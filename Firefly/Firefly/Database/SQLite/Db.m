@@ -80,7 +80,7 @@ $synthesize(compiledStatement);
         [Folder truncateAll];
         [Song truncateAll];
         
-        //get count of songs
+        //get number of songs
         NSString *countQuery = @"select count(*) from songs;";
         query_ = [[NSString stringWithFormat:countQuery] cStringUsingEncoding:NSUTF8StringEncoding];
 

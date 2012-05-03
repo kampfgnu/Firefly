@@ -15,32 +15,48 @@
 #import "SettingsViewController.h"
 #import "StreamerViewController.h"
 
+@interface AppDelegate ()
+
+@property (nonatomic, strong) StreamerViewController *streamerViewController;
+
+@end
+
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+$synthesize(streamerViewController);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [ActiveRecordHelpers setupCoreDataStack];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[KGWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.delegate = self;
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self.window becomeFirstResponder];
 
     FileBrowserViewController *fileBrowserViewController = [[FileBrowserViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:fileBrowserViewController];
+    nc.navigationBar.barStyle = UIBarStyleBlack;
     
 //    PlayerViewController *playerViewController = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
-    StreamerViewController *streamerViewController = [[StreamerViewController alloc] initWithNibName:nil bundle:nil];
+    self.streamerViewController = [[StreamerViewController alloc] initWithNibName:nil bundle:nil];
 //    fileBrowserViewController.playerViewController = playerViewController;
-    fileBrowserViewController.streamerViewController = streamerViewController;
+    fileBrowserViewController.streamerViewController = self.streamerViewController;
     
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:nc, streamerViewController, settingsViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:nc, self.streamerViewController, settingsViewController, nil];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)window:(KGWindow *)window remoteControlReceivedWithEvent:(UIEvent *)event {
+    [self.streamerViewController remoteControlReceivedWithEvent:event];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

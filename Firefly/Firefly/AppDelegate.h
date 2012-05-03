@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGWindow.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, KGWindowDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) KGWindow *window;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 

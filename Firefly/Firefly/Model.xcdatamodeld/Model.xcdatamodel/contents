@@ -4,6 +4,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" syncable="YES"/>
     </entity>
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
+        <attribute name="isCurrentSong" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="queue_position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="song_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,5 +25,6 @@
     <elements>
         <element name="Folder" positionX="-20" positionY="216" width="128" height="75"/>
         <element name="Song" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Playlist" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

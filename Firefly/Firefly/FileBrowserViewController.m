@@ -12,12 +12,17 @@
 #import "StreamerViewController.h"
 #import "Folder.h"
 #import "Song.h"
+#import "MyPlaylist.h"
 #import "NSManagedObject+ActiveRecord.h"
 #import "NSManagedObjectContext+ActiveRecord.h"
+#import "UIView+Sizes.h"
 
 @interface FileBrowserViewController ()
 
+- (void)setTitleHeader;
 - (void)reloadEntities;
+- (void)longPress:(UILongPressGestureRecognizer *)gesture;
+- (void)defaultActionForIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, strong) NSArray *subfolders;
 @property (nonatomic, strong) NSArray *songs;
@@ -81,16 +86,45 @@ $synthesize(streamerViewController);
     [self reloadEntities];
 }
 
+////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark - private methods
+////////////////////////////////////////////////////////////////////////
+
+- (void)setTitleHeader {
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
+    titleLabel.numberOfLines = 3;
+    titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    
+    NSString *title = @"";
+    
+    Folder *currentFolder = self.folder;
+    while (currentFolder != nil) {
+        if (currentFolder.parent == nil) break;
+        title = [currentFolder.name stringByAppendingFormat:@"\n%@", title];
+        currentFolder = currentFolder.parent;
+    }
+    
+    titleLabel.text = title;
+    
+    self.title = self.folder.name;
+    self.navigationItem.titleView = titleLabel;
+}
+
 - (void)reloadEntities {
     if (self.folder == nil) folder_ = [Folder findFirstWithPredicate:[NSPredicate predicateWithFormat:@"parent = null"]];
     
-    self.subfolders = [Folder findAllWithPredicate:[NSPredicate predicateWithFormat:@"parent = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+    self.subfolders = [Folder findAllWithPredicate:[NSPredicate predicateWithFormat:@"parent = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+    
     
     self.songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"track" ascending:YES]]];
     
     [self.tableView reloadData];
     
-    self.title = self.folder.name;
+    [self setTitleHeader];
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -107,7 +141,7 @@ $synthesize(streamerViewController);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return section == 0 ? @"Folders" : @"Songs";
+    return section == 0 ? (self.subfolders.count == 0 ? nil : @"Folders") : (self.songs.count == 0 ? nil : @"Songs");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,6 +162,9 @@ $synthesize(streamerViewController);
         cell.detailTextLabel.numberOfLines = 0;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+		[cell addGestureRecognizer:longPressGesture];
     }
     
     if (indexPath.section == 0) {
@@ -152,10 +189,29 @@ $synthesize(streamerViewController);
         [self.navigationController pushViewController:vc animated:YES];
     }
     else {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action for selection" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add to playlist", @"Play now", nil];
+        [self defaultActionForIndexPath:indexPath];
+    }
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture {
+	// only when gesture was recognized, not when ended
+	if (gesture.state == UIGestureRecognizerStateBegan) {
+		// get affected cell
+		UITableViewCell *cell = (UITableViewCell *)[gesture view];
+        
+		// get indexPath of cell
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action for selection" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add to playlist", @"Play now", nil];
         actionSheet.tag = indexPath.row;
         [actionSheet showFromTabBar:self.tabBarController.tabBar];
-    }
+	}
+}
+
+- (void)defaultActionForIndexPath:(NSIndexPath *)indexPath {
+    Song *song = [self.songs objectAtIndex:indexPath.row];
+    [MyPlaylist replaceAndAddSong:song];
+    [self.streamerViewController start];
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -166,22 +222,15 @@ $synthesize(streamerViewController);
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet.cancelButtonIndex == buttonIndex) return;
     else {
-        if (self.playerViewController) {
-            Song *song = [self.songs objectAtIndex:actionSheet.tag];
-            if (buttonIndex == 0) {
-                [self.playerViewController addSongToQueue:song];
-            }
-            else if (buttonIndex == 1) {
-                [self.playerViewController playSong:song];
-            }
-        }
         if (self.streamerViewController) {
             Song *song = [self.songs objectAtIndex:actionSheet.tag];
             if (buttonIndex == 0) {
-                [self.streamerViewController addSongToQueue:song];
+                [MyPlaylist addSongToQueue:song];
+                [self.streamerViewController updateUI];
             }
             else if (buttonIndex == 1) {
-                [self.streamerViewController playSong:song];
+                [MyPlaylist replaceAndAddSong:song];
+                [self.streamerViewController start];
             }
         }
     }
