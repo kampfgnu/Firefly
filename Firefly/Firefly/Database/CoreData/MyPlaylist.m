@@ -10,20 +10,56 @@
 #import "NSManagedObject+ActiveRecord.h"
 #import "NSManagedObjectContext+ActiveRecord.h"
 #import "Song.h"
+#import "Folder.h"
 
 @interface MyPlaylist ()
+
++ (void)addFolderRecursively:(Folder *)folder;
 
 @end
 
 
 @implementation MyPlaylist
 
++ (void)addFolderToQueue:(Folder *)folder recursively:(BOOL)recursively {
+    if (!recursively) {
+        NSArray *songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"track" ascending:YES]]];
+        for (Song *song in songs) {
+            [self addSongToQueue:song];
+        }
+    }
+    else {
+        [self addFolderRecursively:folder];
+    }
+    
+}
+
++ (void)addFolderRecursively:(Folder *)folder {
+    NSArray *childrenToVisit = [Folder findAllWithPredicate:[NSPredicate predicateWithFormat:@"parent = %@", folder] sortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
+    
+    int i, count = childrenToVisit.count;
+        
+    NSArray *songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"track" ascending:YES]]];
+    for (Song *song in songs) {
+        [self addSongToQueue:song];
+    }
+        
+    // if there are no children, then recursion ends:
+    for (i = 0; i < count; i++) {
+        // make recursive call:
+        [self addFolderRecursively:[childrenToVisit objectAtIndex:i]];
+    }
+}
+
 + (MyPlaylist *)addSongToQueue:(Song *)song {
+    Playlist *maxPlaylist = [Playlist findFirstWithPredicate:[NSPredicate predicateWithFormat:@"SELF.queue_position == @max.queue_position"]];
+    
     MyPlaylist *playlist = [Playlist createEntity];
     playlist.song_id = song.song_id;
     playlist.isCurrentSong = [NSNumber numberWithBool:NO];
     playlist.progress = [NSNumber numberWithFloat:0.f];
-    playlist.queue_position = [NSNumber numberWithInt:[[Playlist numberOfEntities] intValue] + 1];
+        
+    playlist.queue_position = [NSNumber numberWithInt:(maxPlaylist ? [maxPlaylist.queue_position intValue] : 0) + 1];
     [[NSManagedObjectContext contextForCurrentThread] save];
     
     return playlist;
@@ -82,7 +118,7 @@
 }
 
 + (NSArray *)allItemsSortedByQueuePosition {
-    return [Playlist findAllSortedBy:@"queue_position" ascending:NO inContext:[NSManagedObjectContext contextForCurrentThread]];
+    return [Playlist findAllSortedBy:@"queue_position" ascending:YES inContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
 @end

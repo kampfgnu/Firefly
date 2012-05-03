@@ -16,6 +16,7 @@
 #import "NSManagedObject+ActiveRecord.h"
 #import "NSManagedObjectContext+ActiveRecord.h"
 #import "UIView+Sizes.h"
+#import "UIView+Userdata.h"
 
 @interface FileBrowserViewController ()
 
@@ -119,7 +120,6 @@ $synthesize(streamerViewController);
     
     self.subfolders = [Folder findAllWithPredicate:[NSPredicate predicateWithFormat:@"parent = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)]]];
     
-    
     self.songs = [Song findAllWithPredicate:[NSPredicate predicateWithFormat:@"folder = %@", folder_] sortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"track" ascending:YES]]];
     
     [self.tableView reloadData];
@@ -180,17 +180,7 @@ $synthesize(streamerViewController);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        FileBrowserViewController *vc = [[FileBrowserViewController alloc] initWithStyle:UITableViewStylePlain];
-        vc.folder = [self.subfolders objectAtIndex:indexPath.row];
-        vc.playerViewController = self.playerViewController;
-        vc.streamerViewController = self.streamerViewController;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
-        [self defaultActionForIndexPath:indexPath];
-    }
+    [self defaultActionForIndexPath:indexPath];
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)gesture {
@@ -202,16 +192,32 @@ $synthesize(streamerViewController);
 		// get indexPath of cell
 		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action for selection" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add to playlist", @"Play now", nil];
-        actionSheet.tag = indexPath.row;
+		UIActionSheet *actionSheet;
+        if (indexPath.section == 0) {
+            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action for selection" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add folder to playlist", nil];
+        }
+        else {
+            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Action for selection" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add to playlist", @"Play now", nil];
+        }
+        
+        actionSheet.userData = indexPath;
         [actionSheet showFromTabBar:self.tabBarController.tabBar];
 	}
 }
 
 - (void)defaultActionForIndexPath:(NSIndexPath *)indexPath {
-    Song *song = [self.songs objectAtIndex:indexPath.row];
-    [MyPlaylist replaceAndAddSong:song];
-    [self.streamerViewController start];
+    if (indexPath.section == 0) {
+        FileBrowserViewController *vc = [[FileBrowserViewController alloc] initWithStyle:UITableViewStylePlain];
+        vc.folder = [self.subfolders objectAtIndex:indexPath.row];
+        vc.streamerViewController = self.streamerViewController;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else {
+        Song *song = [self.songs objectAtIndex:indexPath.row];
+        [MyPlaylist replaceAndAddSong:song];
+        [self.streamerViewController start];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -223,14 +229,27 @@ $synthesize(streamerViewController);
     if (actionSheet.cancelButtonIndex == buttonIndex) return;
     else {
         if (self.streamerViewController) {
-            Song *song = [self.songs objectAtIndex:actionSheet.tag];
-            if (buttonIndex == 0) {
-                [MyPlaylist addSongToQueue:song];
-                [self.streamerViewController updateUI];
+            NSIndexPath *indexPath = (NSIndexPath *)actionSheet.userData;
+            
+            if (indexPath.section == 0) {
+                Folder *folder = [self.subfolders objectAtIndex:indexPath.row];
+                
+                if (buttonIndex == 0) {
+                    [MyPlaylist addFolderToQueue:folder recursively:YES];
+                    [self.streamerViewController updateUI];
+                }
             }
-            else if (buttonIndex == 1) {
-                [MyPlaylist replaceAndAddSong:song];
-                [self.streamerViewController start];
+            else {
+                Song *song = [self.songs objectAtIndex:indexPath.row];
+                
+                if (buttonIndex == 0) {
+                    [MyPlaylist addSongToQueue:song];
+                    [self.streamerViewController updateUI];
+                }
+                else if (buttonIndex == 1) {
+                    [MyPlaylist replaceAndAddSong:song];
+                    [self.streamerViewController start];
+                }
             }
         }
     }

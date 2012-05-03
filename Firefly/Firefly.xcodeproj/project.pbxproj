@@ -57,6 +57,10 @@
 		FCCD9E7C154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E73154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m */; };
 		FCCD9E80154BEA0F001CD448 /* NSNumberAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */; };
 		FCCD9E9E154BFF80001CD448 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E9D154BFF80001CD448 /* Folder.m */; };
+		FCDE17D215529729000AEBE4 /* KGWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CB15529729000AEBE4 /* KGWindow.m */; };
+		FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */; };
+		FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */; };
+		FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17D115529729000AEBE4 /* UIView+Userdata.m */; };
 		FCE6A62C154E9E5F0027A21A /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6A62B154E9E5F0027A21A /* Song.m */; };
 		FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA315513FC400EBD678 /* Playlist.m */; };
 		FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA9155140C000EBD678 /* MyPlaylist.m */; };
@@ -148,6 +152,15 @@
 		FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberAdditions.m; sourceTree = "<group>"; };
 		FCCD9E9C154BFF80001CD448 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		FCCD9E9D154BFF80001CD448 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
+		FCDE17C915529729000AEBE4 /* KGDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGDefines.h; sourceTree = "<group>"; };
+		FCDE17CA15529729000AEBE4 /* KGWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGWindow.h; sourceTree = "<group>"; };
+		FCDE17CB15529729000AEBE4 /* KGWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGWindow.m; sourceTree = "<group>"; };
+		FCDE17CC15529729000AEBE4 /* NSFileManager+KGiOSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+KGiOSHelper.h"; sourceTree = "<group>"; };
+		FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+KGiOSHelper.m"; sourceTree = "<group>"; };
+		FCDE17CE15529729000AEBE4 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
+		FCDE17D015529729000AEBE4 /* UIView+Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Userdata.h"; sourceTree = "<group>"; };
+		FCDE17D115529729000AEBE4 /* UIView+Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Userdata.m"; sourceTree = "<group>"; };
 		FCE6A62A154E9E5F0027A21A /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		FCE6A62B154E9E5F0027A21A /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		FCFDDDA215513FC400EBD678 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
@@ -216,6 +229,7 @@
 		FC04EB40154AABDC002966F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCDE17C71552971F000AEBE4 /* iOSHelper */,
 				FC00C1DD154D3652002C05D7 /* CFNetwork.framework */,
 				FCBF3DB3154C701A00C4FC97 /* AVFoundation.framework */,
 				FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */,
@@ -372,6 +386,31 @@
 			path = "Firefly/Database/activerecord-coredata";
 			sourceTree = "<group>";
 		};
+		FCDE17C71552971F000AEBE4 /* iOSHelper */ = {
+			isa = PBXGroup;
+			children = (
+				FCDE17C815529729000AEBE4 /* Classes */,
+			);
+			name = iOSHelper;
+			sourceTree = "<group>";
+		};
+		FCDE17C815529729000AEBE4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FCDE17C915529729000AEBE4 /* KGDefines.h */,
+				FCDE17CA15529729000AEBE4 /* KGWindow.h */,
+				FCDE17CB15529729000AEBE4 /* KGWindow.m */,
+				FCDE17CC15529729000AEBE4 /* NSFileManager+KGiOSHelper.h */,
+				FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */,
+				FCDE17CE15529729000AEBE4 /* UIView+Sizes.h */,
+				FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */,
+				FCDE17D015529729000AEBE4 /* UIView+Userdata.h */,
+				FCDE17D115529729000AEBE4 /* UIView+Userdata.m */,
+			);
+			name = Classes;
+			path = ../iOSHelper/iOSHelper/Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,6 +517,10 @@
 				FCE6A62C154E9E5F0027A21A /* Song.m in Sources */,
 				FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */,
 				FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */,
+				FCDE17D215529729000AEBE4 /* KGWindow.m in Sources */,
+				FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */,
+				FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */,
+				FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,9 +602,15 @@
 		FC04EB6A154AABDD002966F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -570,9 +619,15 @@
 		FC04EB6B154AABDD002966F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
