@@ -119,8 +119,6 @@ $synthesize(playlistTable);
     
     Playlist *currentPlaylist = [Playlist currentPlaylist];
     PlaylistItem *playlistItem = [[currentPlaylist allPlaylistItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [NSString stringWithFormat:@"id: %i, current: %i", [playlist.song_id intValue], [playlist.isCurrentSong boolValue]];
-    
     Song *song = playlistItem.song;
     cell.textLabel.text = song.title;
     
@@ -140,6 +138,22 @@ $synthesize(playlistTable);
     [self start];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Playlist *currentPlaylist = [Playlist currentPlaylist];
+        PlaylistItem *playlistItem = [[currentPlaylist allPlaylistItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
+        if (playlistItem == currentPlaylist.currentPlaylistItem) currentPlaylist.currentPlaylistItem = nil;
+        [playlistItem deleteEntity];
+        [playlistItem save];
+        
+		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return UITableViewCellEditingStyleDelete;
+}
+
 ////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark - AudioStreamer methods
@@ -154,11 +168,7 @@ $synthesize(playlistTable);
 }
 
 - (void)createStreamer {
-//	if (self.streamer) {
-//		return;
-//	}
-    
-	[self destroyStreamer];
+    [self destroyStreamer];
     
     [self setPlaylistText];
     

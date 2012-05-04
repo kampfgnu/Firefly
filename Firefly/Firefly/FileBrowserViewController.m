@@ -221,7 +221,7 @@ $synthesize(streamerViewController);
     else {
         Song *song = [self.songs objectAtIndex:indexPath.row];
         Playlist *currentPlaylist = [Playlist currentPlaylist];
-        [currentPlaylist addSongToList:song replace:YES];
+        [currentPlaylist addSongToList:song replace:NO];
         [self.streamerViewController start];
     }
 }
