@@ -1,9 +1,6 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
 	url = https://github.com/gowalla/AFNetworking.git
-[submodule "AudioStreamer"]
-	path = AudioStreamer
-	url = https://github.com/mattgallagher/AudioStreamer.git
 [submodule "iOSHelper"]
 	path = iOSHelper
 	url = git@github.com:kampfgnu/iOSHelper.git
