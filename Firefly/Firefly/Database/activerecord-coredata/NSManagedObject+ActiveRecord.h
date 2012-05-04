@@ -26,6 +26,7 @@
 
 + (id) createEntity;
 + (id)existingOrNewObjectWithAttribute:(NSString *)attribute matchingValue:(id)value;
++ (id)existingOrNewObjectWithPredicate:(NSPredicate *)predicate;
 + (id) createInContext:(NSManagedObjectContext *)context;
 - (BOOL) deleteEntity;
 - (BOOL) deleteInContext:(NSManagedObjectContext *)context;

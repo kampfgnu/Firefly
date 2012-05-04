@@ -127,11 +127,15 @@ $synthesize(compiledStatement);
                 [folders removeObjectAtIndex:0];
                 [folders removeLastObject];
                 
+                int layer = 0;
                 Folder *parentFolder;
                 for (NSString *subpath in folders) {
-                    Folder *subFolder = [Folder existingOrNewObjectWithAttribute:@"name" matchingValue:subpath];
+                    Folder *subFolder = [Folder existingOrNewObjectWithPredicate:[NSPredicate predicateWithFormat:@"name = %@ and layer = %i", subpath, layer]];
+                    subFolder.name = subpath;
+                    subFolder.layer = [NSNumber numberWithInt:layer];
                     [subFolder setParent:parentFolder];
                     parentFolder = subFolder;
+                    layer++;
                 }
                 
                 Song *song = [Song createEntity];

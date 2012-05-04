@@ -701,6 +701,20 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
     return object;
 }
 
++ (id)existingOrNewObjectWithPredicate:(NSPredicate *)predicate {
+    id object = nil;
+    
+    if (predicate != nil) {
+        object = [[self class] findFirstWithPredicate:predicate];
+    }
+    
+    if (object == nil) {
+        object = [[self class] createInContext:[NSManagedObjectContext contextForCurrentThread]];
+    }
+    
+    return object;
+}
+
 - (BOOL) deleteInContext:(NSManagedObjectContext *)context
 {
 	[context deleteObject:self];

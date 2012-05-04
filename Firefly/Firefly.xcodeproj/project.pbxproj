@@ -41,6 +41,7 @@
 		FC04EBE4154AB2EA002966F7 /* AFNetworking.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */; };
 		FC04EBF4154AB2EA002966F7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBB0154AB2EA002966F7 /* LICENSE */; };
 		FC04EC00154AB2EA002966F7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBD0154AB2EA002966F7 /* README.md */; };
+		FC91CFE21553C8E80052075B /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE11553C8E80052075B /* Folder.m */; };
 		FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */; };
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
@@ -56,7 +57,6 @@
 		FCCD9E7B154BE9AF001CD448 /* NSPersistentStore+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E71154BE9AF001CD448 /* NSPersistentStore+ActiveRecord.m */; };
 		FCCD9E7C154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E73154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m */; };
 		FCCD9E80154BEA0F001CD448 /* NSNumberAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */; };
-		FCCD9E9E154BFF80001CD448 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9E9D154BFF80001CD448 /* Folder.m */; };
 		FCDE17D215529729000AEBE4 /* KGWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CB15529729000AEBE4 /* KGWindow.m */; };
 		FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */; };
 		FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */; };
@@ -121,6 +121,8 @@
 		FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AFNetworking.xcworkspace; sourceTree = "<group>"; };
 		FC04EBB0154AB2EA002966F7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC04EBD0154AB2EA002966F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		FC91CFE01553C8E80052075B /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
+		FC91CFE11553C8E80052075B /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
 		FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBF3D9C154C6B5900C4FC97 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -150,8 +152,6 @@
 		FCCD9E73154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPersistentStoreCoordinator+ActiveRecord.m"; sourceTree = "<group>"; };
 		FCCD9E7E154BEA0F001CD448 /* NSNumberAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberAdditions.h; sourceTree = "<group>"; };
 		FCCD9E7F154BEA0F001CD448 /* NSNumberAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberAdditions.m; sourceTree = "<group>"; };
-		FCCD9E9C154BFF80001CD448 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
-		FCCD9E9D154BFF80001CD448 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
 		FCDE17C915529729000AEBE4 /* KGDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGDefines.h; sourceTree = "<group>"; };
 		FCDE17CA15529729000AEBE4 /* KGWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGWindow.h; sourceTree = "<group>"; };
 		FCDE17CB15529729000AEBE4 /* KGWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGWindow.m; sourceTree = "<group>"; };
@@ -349,12 +349,12 @@
 		FCCD9E3F154BDFA6001CD448 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FC91CFE01553C8E80052075B /* Folder.h */,
+				FC91CFE11553C8E80052075B /* Folder.m */,
 				FCFDDDA215513FC400EBD678 /* Playlist.h */,
 				FCFDDDA315513FC400EBD678 /* Playlist.m */,
 				FCE6A62A154E9E5F0027A21A /* Song.h */,
 				FCE6A62B154E9E5F0027A21A /* Song.m */,
-				FCCD9E9C154BFF80001CD448 /* Folder.h */,
-				FCCD9E9D154BFF80001CD448 /* Folder.m */,
 				FCFDDDA8155140C000EBD678 /* MyPlaylist.h */,
 				FCFDDDA9155140C000EBD678 /* MyPlaylist.m */,
 			);
@@ -508,7 +508,6 @@
 				FCCD9E7B154BE9AF001CD448 /* NSPersistentStore+ActiveRecord.m in Sources */,
 				FCCD9E7C154BE9AF001CD448 /* NSPersistentStoreCoordinator+ActiveRecord.m in Sources */,
 				FCCD9E80154BEA0F001CD448 /* NSNumberAdditions.m in Sources */,
-				FCCD9E9E154BFF80001CD448 /* Folder.m in Sources */,
 				FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */,
 				FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */,
 				FC00C1C6154D2E8A002C05D7 /* AudioStreamer.m in Sources */,
@@ -521,6 +520,7 @@
 				FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */,
 				FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */,
 				FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */,
+				FC91CFE21553C8E80052075B /* Folder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
