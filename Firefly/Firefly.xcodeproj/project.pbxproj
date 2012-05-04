@@ -46,7 +46,6 @@
 		FC98A8671554182600D2A6E1 /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A8661554182600D2A6E1 /* PlaylistItem.m */; };
 		FC98A86E1554195800D2A6E1 /* Playlist+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */; };
 		FC98A871155419B400D2A6E1 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A870155419B400D2A6E1 /* Playlist.m */; };
-		FC98A87415542A2100D2A6E1 /* PlaylistItem+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */; };
 		FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */; };
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
@@ -133,8 +132,6 @@
 		FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Playlist+Extensions.m"; sourceTree = "<group>"; };
 		FC98A86F155419B400D2A6E1 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		FC98A870155419B400D2A6E1 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
-		FC98A87215542A2100D2A6E1 /* PlaylistItem+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaylistItem+Extensions.h"; sourceTree = "<group>"; };
-		FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaylistItem+Extensions.m"; sourceTree = "<group>"; };
 		FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBF3D9C154C6B5900C4FC97 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -354,8 +351,6 @@
 				FC91CFE11553C8E80052075B /* Folder.m */,
 				FC98A86C1554195800D2A6E1 /* Playlist+Extensions.h */,
 				FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */,
-				FC98A87215542A2100D2A6E1 /* PlaylistItem+Extensions.h */,
-				FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -523,7 +518,6 @@
 				FC98A8671554182600D2A6E1 /* PlaylistItem.m in Sources */,
 				FC98A86E1554195800D2A6E1 /* Playlist+Extensions.m in Sources */,
 				FC98A871155419B400D2A6E1 /* Playlist.m in Sources */,
-				FC98A87415542A2100D2A6E1 /* PlaylistItem+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
