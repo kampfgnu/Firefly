@@ -15,6 +15,7 @@
 #import "AudioStreamer.h"
 #import "Song.h"
 #import "MyPlaylist.h"
+#import "KGTimeConverter.h"
 
 @interface StreamerViewController ()
 
@@ -92,16 +93,20 @@ $synthesize(playlistTable);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"EmptyCell";
+    static NSString *folderCellIdentifier = @"FolderCell";
+    static NSString *songCellIdentifier = @"SongCell";
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
         cell.textLabel.numberOfLines = 0;
         cell.detailTextLabel.numberOfLines = 0;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+		[cell addGestureRecognizer:longPressGesture];
     }
     
     MyPlaylist *playlist = [[MyPlaylist allItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
@@ -109,7 +114,10 @@ $synthesize(playlistTable);
     
     Song *song = [MyPlaylist songForPlaylistItem:playlist];
     cell.textLabel.text = song.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nLength: %f", [song.track intValue], song.artist, song.album, song.genre, song.filename, [song.song_length intValue]/60000.f];
+    
+    KGTimeConverter *timeConverter = [KGTimeConverter timeConverterWithNumber:song.song_length];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nDuration: %f", [song.track intValue], song.artist, song.album, song.genre, song.filename, timeConverter.timeString];
     
     return cell;
 }
@@ -152,8 +160,8 @@ $synthesize(playlistTable);
 	NSURL *url = [NSURL URLWithString:urlString];
 	self.streamer = [[AudioStreamer alloc] initWithURL:url];
     NSLog(@"duration: %f", self.streamer.duration);
-    //MyPlaylist *playlist = [MyPlaylist playlistItemForSong:currentSong];
-    
+    MyPlaylist *playlist = [MyPlaylist playlistItemForSong:currentSong];
+    if ([playlist.progress floatValue] > 0.f) [self.streamer setInitialStartPositionInPercent:[playlist.progress floatValue] totalFileLength: [currentSong.file_size intValue]];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackStateChanged:) name:ASStatusChangedNotification object:self.streamer];
@@ -166,23 +174,16 @@ $synthesize(playlistTable);
 - (void)playbackStateChanged:(NSNotification *)notification {
     [self setPlaylistText];
     
-    if (self.streamer.state == AS_PLAYING) {
-
-        
-    }
-	if ([self.streamer isWaiting]) {
-
-	}
-	else if ([self.streamer isPlaying]) {
-
-	}
-	else if ([self.streamer isIdle] && !self.streamer.stopReason == AS_STOPPING_EOF) {
-//		[self destroyStreamer];
+    NSLog(@"state: %@, stopreason: %@, error: %@", [AudioStreamer stringForState:self.streamer.state], [AudioStreamer stringForStopReason:self.streamer.stopReason], [AudioStreamer stringForErrorCode:self.streamer.errorCode]);
+    
+//    Song *currentSong = [MyPlaylist currentSong];
+//    if (currentSong != nil) {
+//        
+//    }
+    
+    if (self.streamer.state == AS_STOPPED && self.streamer.stopReason == AS_STOPPING_EOF) {
         [self playNextSong];
-	}
-	else if (self.streamer.stopReason == AS_STOPPING_EOF) {
-		[self playNextSong];
-	}
+    }
 }
 
 - (IBAction)sliderMoved:(UISlider *)slider {

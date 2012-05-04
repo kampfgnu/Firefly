@@ -96,7 +96,7 @@ $synthesize(compiledStatement);
         
         
         //build database
-        NSString *_query = @"SELECT * FROM songs;";
+        NSString *_query = @"select * from songs;";
         query_ = [[NSString stringWithFormat:_query] cStringUsingEncoding:NSUTF8StringEncoding];
         
         if(sqlite3_prepare_v2(database_, query_, -1, &compiledStatement_, NULL) == SQLITE_OK) {
@@ -116,6 +116,7 @@ $synthesize(compiledStatement);
                 NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
                 NSString *songGenre = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 6)];
                 int songLength = sqlite3_column_int(compiledStatement_, 16);
+                int songFileSize = sqlite3_column_int(compiledStatement_, 17);
 //                NSLog(@"kength: %i", songLength);
                 int songYear = sqlite3_column_int(compiledStatement_, 18);
                 int songTrack = sqlite3_column_int(compiledStatement_, 19);
@@ -146,6 +147,7 @@ $synthesize(compiledStatement);
                 song.album = songAlbum;
                 song.genre = songGenre;
                 song.song_length = [NSNumber numberWithInt:songLength];
+                song.file_size = [NSNumber numberWithInt:songFileSize];
                 song.year = [NSNumber numberWithInt:songYear];
                 song.track = [NSNumber numberWithInt:songTrack];
                 [song setFolder:parentFolder];

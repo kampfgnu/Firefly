@@ -14,6 +14,7 @@
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="file_size" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="genre" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="song_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -24,8 +25,8 @@
         <relationship name="folder" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Folder" positionX="-20" positionY="216" width="128" height="90"/>
+        <element name="Folder" positionX="-20" positionY="216" width="128" height="75"/>
         <element name="Playlist" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Song" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Song" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

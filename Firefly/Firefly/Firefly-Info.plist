@@ -39,5 +39,7 @@
 		<string>voip</string>
 		<string>audio</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 </dict>
 </plist>

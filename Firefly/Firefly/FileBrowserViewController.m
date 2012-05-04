@@ -17,6 +17,7 @@
 #import "NSManagedObjectContext+ActiveRecord.h"
 #import "UIView+Sizes.h"
 #import "UIView+Userdata.h"
+#import "KGTimeConverter.h"
 
 @interface FileBrowserViewController ()
 
@@ -109,7 +110,7 @@ $synthesize(streamerViewController);
         currentFolder = currentFolder.parent;
     }
     
-    titleLabel.text = title;
+    titleLabel.text = title.length == 0 ? self.folder.name : title ;
     
     self.title = self.folder.name;
     self.navigationItem.titleView = titleLabel;
@@ -152,12 +153,13 @@ $synthesize(streamerViewController);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"EmptyCell";
-
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *folderCellIdentifier = @"FolderCell";
+    static NSString *songCellIdentifier = @"SongCell";
+    
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
         cell.textLabel.numberOfLines = 0;
         cell.detailTextLabel.numberOfLines = 0;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
@@ -174,7 +176,10 @@ $synthesize(streamerViewController);
     else {
         Song *song = [self.songs objectAtIndex:indexPath.row];
         cell.textLabel.text = song.title;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nLength: %f", [song.track intValue], song.artist, song.album, song.genre, song.filename, [song.song_length intValue]/60000.f];
+        
+        KGTimeConverter *timeConverter = [KGTimeConverter timeConverterWithNumber:song.song_length];
+
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nDuration: %@", [song.track intValue], song.artist, song.album, song.genre, song.filename, timeConverter.timeString];
     }
     return cell;
 }

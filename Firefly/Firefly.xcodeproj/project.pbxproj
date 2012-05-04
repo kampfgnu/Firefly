@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC00C1C6154D2E8A002C05D7 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC00C199154D2E8A002C05D7 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FC00C1C8154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC00C19D154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC00C1DE154D3652002C05D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC00C1DD154D3652002C05D7 /* CFNetwork.framework */; };
 		FC00C1E1154D37A5002C05D7 /* StreamerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC00C1E0154D37A5002C05D7 /* StreamerViewController.m */; };
 		FC032507154AC3DF00111C68 /* mt-daapd.txt in Resources */ = {isa = PBXBuildFile; fileRef = FC032506154AC3DF00111C68 /* mt-daapd.txt */; };
@@ -42,6 +40,9 @@
 		FC04EBF4154AB2EA002966F7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBB0154AB2EA002966F7 /* LICENSE */; };
 		FC04EC00154AB2EA002966F7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBD0154AB2EA002966F7 /* README.md */; };
 		FC91CFE21553C8E80052075B /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE11553C8E80052075B /* Folder.m */; };
+		FC91CFE71553D00D0052075B /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE61553D00D0052075B /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FC91CFF61553E6460052075B /* KGTimeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFF51553E6460052075B /* KGTimeConverter.m */; };
+		FC91CFF91553EEB30052075B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFF81553EEB30052075B /* Song.m */; };
 		FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */; };
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
@@ -61,16 +62,11 @@
 		FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */; };
 		FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */; };
 		FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17D115529729000AEBE4 /* UIView+Userdata.m */; };
-		FCE6A62C154E9E5F0027A21A /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6A62B154E9E5F0027A21A /* Song.m */; };
 		FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA315513FC400EBD678 /* Playlist.m */; };
 		FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA9155140C000EBD678 /* MyPlaylist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FC00C198154D2E8A002C05D7 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
-		FC00C199154D2E8A002C05D7 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
-		FC00C19C154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneStreamingPlayerViewController.h; sourceTree = "<group>"; };
-		FC00C19D154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneStreamingPlayerViewController.m; sourceTree = "<group>"; };
 		FC00C1DD154D3652002C05D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FC00C1DF154D37A5002C05D7 /* StreamerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamerViewController.h; sourceTree = "<group>"; };
 		FC00C1E0154D37A5002C05D7 /* StreamerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamerViewController.m; sourceTree = "<group>"; };
@@ -123,6 +119,12 @@
 		FC04EBD0154AB2EA002966F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		FC91CFE01553C8E80052075B /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		FC91CFE11553C8E80052075B /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
+		FC91CFE51553D00D0052075B /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		FC91CFE61553D00D0052075B /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		FC91CFF41553E6460052075B /* KGTimeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGTimeConverter.h; sourceTree = "<group>"; };
+		FC91CFF51553E6460052075B /* KGTimeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGTimeConverter.m; sourceTree = "<group>"; };
+		FC91CFF71553EEB30052075B /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		FC91CFF81553EEB30052075B /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBF3D9C154C6B5900C4FC97 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -161,8 +163,6 @@
 		FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		FCDE17D015529729000AEBE4 /* UIView+Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Userdata.h"; sourceTree = "<group>"; };
 		FCDE17D115529729000AEBE4 /* UIView+Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Userdata.m"; sourceTree = "<group>"; };
-		FCE6A62A154E9E5F0027A21A /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
-		FCE6A62B154E9E5F0027A21A /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		FCFDDDA215513FC400EBD678 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		FCFDDDA315513FC400EBD678 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
 		FCFDDDA8155140C000EBD678 /* MyPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlaylist.h; sourceTree = "<group>"; };
@@ -189,26 +189,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FC00C194154D2E8A002C05D7 /* AudioStreamer */ = {
-			isa = PBXGroup;
-			children = (
-				FC00C197154D2E8A002C05D7 /* Classes */,
-			);
-			name = AudioStreamer;
-			path = ../AudioStreamer;
-			sourceTree = "<group>";
-		};
-		FC00C197154D2E8A002C05D7 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				FC00C198154D2E8A002C05D7 /* AudioStreamer.h */,
-				FC00C199154D2E8A002C05D7 /* AudioStreamer.m */,
-				FC00C19C154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.h */,
-				FC00C19D154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		FC04EB32154AABDC002966F7 = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +213,6 @@
 				FC00C1DD154D3652002C05D7 /* CFNetwork.framework */,
 				FCBF3DB3154C701A00C4FC97 /* AVFoundation.framework */,
 				FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */,
-				FC00C194154D2E8A002C05D7 /* AudioStreamer */,
 				FCCD9E63154BE9AF001CD448 /* activerecord-coredata */,
 				FC04EB73154AB2EA002966F7 /* AFNetworking */,
 				FCCD9E37154BDEA2001CD448 /* CoreData.framework */,
@@ -249,6 +228,7 @@
 		FC04EB47154AABDC002966F7 /* Firefly */ = {
 			isa = PBXGroup;
 			children = (
+				FC91CFE41553D00D0052075B /* AudioStreamer */,
 				FCCD9E62154BE39F001CD448 /* Defines.h */,
 				FCCD9C83154BD727001CD448 /* Macros.h */,
 				FCCD9C7E154BD673001CD448 /* Database */,
@@ -328,6 +308,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		FC91CFE41553D00D0052075B /* AudioStreamer */ = {
+			isa = PBXGroup;
+			children = (
+				FC91CFE51553D00D0052075B /* AudioStreamer.h */,
+				FC91CFE61553D00D0052075B /* AudioStreamer.m */,
+			);
+			path = AudioStreamer;
+			sourceTree = "<group>";
+		};
 		FCCD9C7E154BD673001CD448 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,12 +338,12 @@
 		FCCD9E3F154BDFA6001CD448 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FC91CFF71553EEB30052075B /* Song.h */,
+				FC91CFF81553EEB30052075B /* Song.m */,
 				FC91CFE01553C8E80052075B /* Folder.h */,
 				FC91CFE11553C8E80052075B /* Folder.m */,
 				FCFDDDA215513FC400EBD678 /* Playlist.h */,
 				FCFDDDA315513FC400EBD678 /* Playlist.m */,
-				FCE6A62A154E9E5F0027A21A /* Song.h */,
-				FCE6A62B154E9E5F0027A21A /* Song.m */,
 				FCFDDDA8155140C000EBD678 /* MyPlaylist.h */,
 				FCFDDDA9155140C000EBD678 /* MyPlaylist.m */,
 			);
@@ -397,6 +386,8 @@
 		FCDE17C815529729000AEBE4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FC91CFF41553E6460052075B /* KGTimeConverter.h */,
+				FC91CFF51553E6460052075B /* KGTimeConverter.m */,
 				FCDE17C915529729000AEBE4 /* KGDefines.h */,
 				FCDE17CA15529729000AEBE4 /* KGWindow.h */,
 				FCDE17CB15529729000AEBE4 /* KGWindow.m */,
@@ -510,10 +501,7 @@
 				FCCD9E80154BEA0F001CD448 /* NSNumberAdditions.m in Sources */,
 				FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */,
 				FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */,
-				FC00C1C6154D2E8A002C05D7 /* AudioStreamer.m in Sources */,
-				FC00C1C8154D2E8A002C05D7 /* iPhoneStreamingPlayerViewController.m in Sources */,
 				FC00C1E1154D37A5002C05D7 /* StreamerViewController.m in Sources */,
-				FCE6A62C154E9E5F0027A21A /* Song.m in Sources */,
 				FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */,
 				FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */,
 				FCDE17D215529729000AEBE4 /* KGWindow.m in Sources */,
@@ -521,6 +509,9 @@
 				FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */,
 				FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */,
 				FC91CFE21553C8E80052075B /* Folder.m in Sources */,
+				FC91CFE71553D00D0052075B /* AudioStreamer.m in Sources */,
+				FC91CFF61553E6460052075B /* KGTimeConverter.m in Sources */,
+				FC91CFF91553EEB30052075B /* Song.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

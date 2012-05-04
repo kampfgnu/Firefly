@@ -76,7 +76,8 @@ typedef enum
 	AS_STOPPING_EOF,
 	AS_STOPPING_USER_ACTION,
 	AS_STOPPING_ERROR,
-	AS_STOPPING_TEMPORARILY
+	AS_STOPPING_TEMPORARILY,
+    AS_INTERRUPTION
 } AudioStreamerStopReason;
 
 typedef enum
@@ -187,7 +188,12 @@ extern NSString * const ASStatusChangedNotification;
 - (BOOL)isWaiting;
 - (BOOL)isIdle;
 - (void)seekToTime:(double)newSeekTime;
+- (void)setInitialStartPositionInPercent:(float)percent totalFileLength:(int)totalFileLength;
 - (double)calculatedBitRate;
+
++ (NSString *)stringForErrorCode:(AudioStreamerErrorCode)anErrorCode;
++ (NSString *)stringForState:(AudioStreamerState)state;
++ (NSString *)stringForStopReason:(AudioStreamerStopReason)stopReason;
 
 @end
 

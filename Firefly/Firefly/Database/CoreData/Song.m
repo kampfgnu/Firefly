@@ -2,7 +2,7 @@
 //  Song.m
 //  Firefly
 //
-//  Created by kampfgnu on 4/30/12.
+//  Created by kampfgnu on 5/4/12.
 //  Copyright (c) 2012 NOUS. All rights reserved.
 //
 
@@ -12,15 +12,16 @@
 
 @implementation Song
 
-@dynamic song_id;
-@dynamic title;
-@dynamic filename;
-@dynamic artist;
 @dynamic album;
+@dynamic artist;
+@dynamic filename;
 @dynamic genre;
+@dynamic song_id;
 @dynamic song_length;
+@dynamic title;
 @dynamic track;
 @dynamic year;
+@dynamic file_size;
 @dynamic folder;
 
 @end

@@ -54,6 +54,24 @@ NSString * const AS_AUDIO_STREAMER_FAILED_STRING = @"Audio playback failed";
 NSString * const AS_NETWORK_CONNECTION_FAILED_STRING = @"Network connection failed";
 NSString * const AS_AUDIO_BUFFER_TOO_SMALL_STRING = @"Audio packets are larger than kAQDefaultBufSize.";
 
+NSString * const AS_INITIALIZED_STRING = @"AS_INITIALIZED";
+NSString * const AS_STARTING_FILE_THREAD_STRING = @"AS_STARTING_FILE_THREAD";
+NSString * const AS_WAITING_FOR_DATA_STRING = @"AS_WAITING_FOR_DATA";
+NSString * const AS_FLUSHING_EOF_STRING = @"AS_FLUSHING_EOF";
+NSString * const AS_WAITING_FOR_QUEUE_TO_START_STRING = @"AS_WAITING_FOR_QUEUE_TO_START";
+NSString * const AS_PLAYING_STRING = @"AS_PLAYING";
+NSString * const AS_BUFFERING_STRING = @"AS_BUFFERING";
+NSString * const AS_STOPPING_STRING = @"AS_STOPPING";
+NSString * const AS_STOPPED_STRING = @"AS_STOPPED";
+NSString * const AS_PAUSED_STRING = @"AS_PAUSED";
+
+NSString * const AS_NO_STOP_STRING = @"AS_NO_STOP";
+NSString * const AS_STOPPING_EOF_STRING = @"AS_STOPPING_EOF";
+NSString * const AS_STOPPING_USER_ACTION_STRING = @"AS_STOPPING_USER_ACTION";
+NSString * const AS_STOPPING_ERROR_STRING = @"AS_STOPPING_ERROR";
+NSString * const AS_STOPPING_TEMPORARILY_STRING = @"AS_STOPPING_TEMPORARILY";
+NSString * const AS_INTERRUPTION_STRING = @"AS_INTERRUPTION";
+
 static AudioStreamer *__streamer = nil;
 
 @interface AudioStreamer ()
@@ -365,6 +383,53 @@ void ASReadStreamCallBack
 	return AS_AUDIO_STREAMER_FAILED_STRING;
 }
 
++ (NSString *)stringForState:(AudioStreamerState)state {
+    switch (state) {
+        case AS_INITIALIZED:
+            return AS_INITIALIZED_STRING;
+        case AS_STARTING_FILE_THREAD:
+            return AS_STARTING_FILE_THREAD_STRING;
+        case AS_WAITING_FOR_DATA:
+            return AS_WAITING_FOR_DATA_STRING;
+        case AS_FLUSHING_EOF:
+            return AS_FLUSHING_EOF_STRING;
+        case AS_WAITING_FOR_QUEUE_TO_START:
+            return AS_WAITING_FOR_QUEUE_TO_START_STRING;
+        case AS_PLAYING:
+            return AS_PLAYING_STRING;
+        case AS_BUFFERING:
+            return AS_BUFFERING_STRING;
+        case AS_STOPPING:
+            return AS_STOPPING_STRING;
+        case AS_STOPPED:
+            return AS_STOPPED_STRING;
+        case AS_PAUSED:
+            return AS_PAUSED_STRING;
+        default:
+            return @"UNKNOWN STREAMER STATE";
+            break;
+    }
+}
+
++ (NSString *)stringForStopReason:(AudioStreamerStopReason)stopReason {
+    switch (stopReason) {
+        case AS_NO_STOP:
+            return AS_NO_STOP_STRING;
+        case AS_STOPPING_EOF:
+            return AS_STOPPING_EOF_STRING;
+        case AS_STOPPING_USER_ACTION:
+            return AS_STOPPING_USER_ACTION_STRING;
+        case AS_STOPPING_ERROR:
+            return AS_STOPPING_ERROR_STRING;
+        case AS_STOPPING_TEMPORARILY:
+            return AS_STOPPING_TEMPORARILY_STRING;
+        case AS_INTERRUPTION:
+            return AS_INTERRUPTION_STRING;
+        default:
+            return @"UNKNOWN STOP REASON";
+    }
+}
+
 //
 // presentAlertWithTitle:message:
 //
@@ -377,19 +442,19 @@ void ASReadStreamCallBack
 - (void)presentAlertWithTitle:(NSString*)title message:(NSString*)message
 {
 #if TARGET_OS_IPHONE
-	UIAlertView *alert = [
-		[[UIAlertView alloc]
-			initWithTitle:title
-			message:message
-			delegate:self
-			cancelButtonTitle:NSLocalizedString(@"OK", @"")
-			otherButtonTitles: nil]
-		autorelease];
-	[alert
-		performSelector:@selector(show)
-		onThread:[NSThread mainThread]
-		withObject:nil
-		waitUntilDone:NO];
+//	UIAlertView *alert = [
+//		[[UIAlertView alloc]
+//			initWithTitle:title
+//			message:message
+//			delegate:self
+//			cancelButtonTitle:NSLocalizedString(@"OK", @"")
+//			otherButtonTitles: nil]
+//		autorelease];
+//	[alert
+//		performSelector:@selector(show)
+//		onThread:[NSThread mainThread]
+//		withObject:nil
+//		waitUntilDone:NO];
 #else
 	NSAlert *alert =
 		[NSAlert
@@ -449,7 +514,7 @@ void ASReadStreamCallBack
 		}
 
 		[self presentAlertWithTitle:NSLocalizedStringFromTable(@"File Error", @"Errors", nil)
-							message:NSLocalizedStringFromTable(@"Unable to configure network read stream.", @"Errors", nil)];
+                            message:NSLocalizedStringFromTable(@"Unable to configure network read stream.", @"Errors", nil)];
 	}
 }
 
@@ -785,14 +850,6 @@ void ASReadStreamCallBack
 			sizeof (sessionCategory),
 			&sessionCategory
 		);
-//        OSStatus propertySetError = 0;
-//        UInt32 allowMixing = true;
-//        propertySetError = AudioSessionSetProperty (kAudioSessionCategory_SoloAmbientSound,
-//                                 sizeof (allowMixing),
-//                                 &allowMixing
-//        );
-//        
-//        NSLog(@"propertyseterror: %i", propertySetError);
         
 		AudioSessionSetActive(true);
         
@@ -1002,8 +1059,8 @@ cleanup:
 	//
 	// Stop the audio queue
 	//
-	self.state = AS_STOPPING;
 	self.stopReason = AS_STOPPING_TEMPORARILY;
+	self.state = AS_STOPPING;
 	err = AudioQueueStop(audioQueue, true);
 	if (err)
 	{
@@ -1034,6 +1091,11 @@ cleanup:
 		seekWasRequested = YES;
 		requestedSeekTime = newSeekTime;
 	}
+}
+
+- (void)setInitialStartPositionInPercent:(float)percent totalFileLength:(int)totalFileLength {
+    fileLength = totalFileLength;
+    seekByteOffset = totalFileLength * percent;
 }
 
 //
@@ -1971,6 +2033,7 @@ cleanup:
 {
 	if (inInterruptionState == kAudioSessionBeginInterruption)
 	{ 
+        self.stopReason = AS_INTERRUPTION;
         
 		if ([self isPlaying]) {
 			[self pause];
@@ -1982,6 +2045,8 @@ cleanup:
 	}
 	else if (inInterruptionState == kAudioSessionEndInterruption) 
 	{
+        self.stopReason = AS_NO_STOP;
+        
         UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
 		AudioSessionSetProperty (
                                  kAudioSessionProperty_AudioCategory,
