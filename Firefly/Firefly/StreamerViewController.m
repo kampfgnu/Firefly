@@ -16,7 +16,7 @@
 #import "AudioStreamer.h"
 #import "Song.h"
 #import "Playlist+Extensions.h"
-#import "PlaylistItem+Extensions.h"
+#import "PlaylistItem.h"
 #import "KGTimeConverter.h"
 
 @interface StreamerViewController ()
