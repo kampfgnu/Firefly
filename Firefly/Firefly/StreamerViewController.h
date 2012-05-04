@@ -16,8 +16,6 @@
 
 - (void)start;
 - (void)updateUI;
-- (void)playSong:(Song *)song;
-- (void)addSongToQueue:(Song *)song;
 - (void)playNextSong;
 - (void)remoteControlReceivedWithEvent:(UIEvent *)receivedEvent;
 

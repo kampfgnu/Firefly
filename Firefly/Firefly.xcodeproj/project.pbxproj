@@ -43,6 +43,10 @@
 		FC91CFE71553D00D0052075B /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE61553D00D0052075B /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC91CFF61553E6460052075B /* KGTimeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFF51553E6460052075B /* KGTimeConverter.m */; };
 		FC91CFF91553EEB30052075B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFF81553EEB30052075B /* Song.m */; };
+		FC98A8671554182600D2A6E1 /* PlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A8661554182600D2A6E1 /* PlaylistItem.m */; };
+		FC98A86E1554195800D2A6E1 /* Playlist+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */; };
+		FC98A871155419B400D2A6E1 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A870155419B400D2A6E1 /* Playlist.m */; };
+		FC98A87415542A2100D2A6E1 /* PlaylistItem+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */; };
 		FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */; };
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
@@ -62,8 +66,6 @@
 		FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CD15529729000AEBE4 /* NSFileManager+KGiOSHelper.m */; };
 		FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */; };
 		FCDE17D515529729000AEBE4 /* UIView+Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDE17D115529729000AEBE4 /* UIView+Userdata.m */; };
-		FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA315513FC400EBD678 /* Playlist.m */; };
-		FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFDDDA9155140C000EBD678 /* MyPlaylist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +127,14 @@
 		FC91CFF51553E6460052075B /* KGTimeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGTimeConverter.m; sourceTree = "<group>"; };
 		FC91CFF71553EEB30052075B /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		FC91CFF81553EEB30052075B /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		FC98A8651554182600D2A6E1 /* PlaylistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistItem.h; sourceTree = "<group>"; };
+		FC98A8661554182600D2A6E1 /* PlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistItem.m; sourceTree = "<group>"; };
+		FC98A86C1554195800D2A6E1 /* Playlist+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Playlist+Extensions.h"; sourceTree = "<group>"; };
+		FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Playlist+Extensions.m"; sourceTree = "<group>"; };
+		FC98A86F155419B400D2A6E1 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		FC98A870155419B400D2A6E1 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
+		FC98A87215542A2100D2A6E1 /* PlaylistItem+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaylistItem+Extensions.h"; sourceTree = "<group>"; };
+		FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaylistItem+Extensions.m"; sourceTree = "<group>"; };
 		FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBF3D9C154C6B5900C4FC97 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -163,10 +173,6 @@
 		FCDE17CF15529729000AEBE4 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		FCDE17D015529729000AEBE4 /* UIView+Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Userdata.h"; sourceTree = "<group>"; };
 		FCDE17D115529729000AEBE4 /* UIView+Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Userdata.m"; sourceTree = "<group>"; };
-		FCFDDDA215513FC400EBD678 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
-		FCFDDDA315513FC400EBD678 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
-		FCFDDDA8155140C000EBD678 /* MyPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlaylist.h; sourceTree = "<group>"; };
-		FCFDDDA9155140C000EBD678 /* MyPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPlaylist.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,14 +344,18 @@
 		FCCD9E3F154BDFA6001CD448 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FC98A86F155419B400D2A6E1 /* Playlist.h */,
+				FC98A870155419B400D2A6E1 /* Playlist.m */,
+				FC98A8651554182600D2A6E1 /* PlaylistItem.h */,
+				FC98A8661554182600D2A6E1 /* PlaylistItem.m */,
 				FC91CFF71553EEB30052075B /* Song.h */,
 				FC91CFF81553EEB30052075B /* Song.m */,
 				FC91CFE01553C8E80052075B /* Folder.h */,
 				FC91CFE11553C8E80052075B /* Folder.m */,
-				FCFDDDA215513FC400EBD678 /* Playlist.h */,
-				FCFDDDA315513FC400EBD678 /* Playlist.m */,
-				FCFDDDA8155140C000EBD678 /* MyPlaylist.h */,
-				FCFDDDA9155140C000EBD678 /* MyPlaylist.m */,
+				FC98A86C1554195800D2A6E1 /* Playlist+Extensions.h */,
+				FC98A86D1554195800D2A6E1 /* Playlist+Extensions.m */,
+				FC98A87215542A2100D2A6E1 /* PlaylistItem+Extensions.h */,
+				FC98A87315542A2100D2A6E1 /* PlaylistItem+Extensions.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -502,8 +512,6 @@
 				FCBF3D9B154C5EC800C4FC97 /* SettingsViewController.m in Sources */,
 				FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */,
 				FC00C1E1154D37A5002C05D7 /* StreamerViewController.m in Sources */,
-				FCFDDDA415513FC400EBD678 /* Playlist.m in Sources */,
-				FCFDDDAA155140C000EBD678 /* MyPlaylist.m in Sources */,
 				FCDE17D215529729000AEBE4 /* KGWindow.m in Sources */,
 				FCDE17D315529729000AEBE4 /* NSFileManager+KGiOSHelper.m in Sources */,
 				FCDE17D415529729000AEBE4 /* UIView+Sizes.m in Sources */,
@@ -512,6 +520,10 @@
 				FC91CFE71553D00D0052075B /* AudioStreamer.m in Sources */,
 				FC91CFF61553E6460052075B /* KGTimeConverter.m in Sources */,
 				FC91CFF91553EEB30052075B /* Song.m in Sources */,
+				FC98A8671554182600D2A6E1 /* PlaylistItem.m in Sources */,
+				FC98A86E1554195800D2A6E1 /* Playlist+Extensions.m in Sources */,
+				FC98A871155419B400D2A6E1 /* Playlist.m in Sources */,
+				FC98A87415542A2100D2A6E1 /* PlaylistItem+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

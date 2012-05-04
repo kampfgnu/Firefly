@@ -12,9 +12,11 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+#import "NSManagedObject+ActiveRecord.h"
 #import "AudioStreamer.h"
 #import "Song.h"
-#import "MyPlaylist.h"
+#import "Playlist+Extensions.h"
+#import "PlaylistItem+Extensions.h"
 #import "KGTimeConverter.h"
 
 @interface StreamerViewController ()
@@ -23,6 +25,7 @@
 - (void)createStreamer;
 - (void)playbackStateChanged:(NSNotification *)notification;
 - (IBAction)sliderMoved:(UISlider *)slider;
+- (void)play;
 - (void)nextSong;
 - (void)setPlaylistText;
 
@@ -52,7 +55,13 @@ $synthesize(playlistTable);
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 10, 320 - 120, 30)];
     [slider addTarget:self action:@selector(sliderMoved:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:slider];
-
+    
+    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    playButton.frame = CGRectMake(10, 5, 40, 40);
+    [playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
+    [playButton setTitle:@">" forState:UIControlStateNormal];
+    [self.view addSubview:playButton];
+    
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     nextButton.frame = CGRectMake(320 - 50, 5, 40, 40);
     [nextButton addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
@@ -89,43 +98,45 @@ $synthesize(playlistTable);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [MyPlaylist allItemsSortedByQueuePosition].count;
+    return [[Playlist currentPlaylist] allPlaylistItemsSortedByQueuePosition].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *folderCellIdentifier = @"FolderCell";
     static NSString *songCellIdentifier = @"SongCell";
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:songCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:(indexPath.section == 0) ? folderCellIdentifier : songCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:songCellIdentifier];
         cell.textLabel.numberOfLines = 0;
         cell.detailTextLabel.numberOfLines = 0;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         
-        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-		[cell addGestureRecognizer:longPressGesture];
+//        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+//		[cell addGestureRecognizer:longPressGesture];
     }
     
-    MyPlaylist *playlist = [[MyPlaylist allItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
+    Playlist *currentPlaylist = [Playlist currentPlaylist];
+    PlaylistItem *playlistItem = [[currentPlaylist allPlaylistItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"id: %i, current: %i", [playlist.song_id intValue], [playlist.isCurrentSong boolValue]];
     
-    Song *song = [MyPlaylist songForPlaylistItem:playlist];
+    Song *song = playlistItem.song;
     cell.textLabel.text = song.title;
     
     KGTimeConverter *timeConverter = [KGTimeConverter timeConverterWithNumber:song.song_length];
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nDuration: %f", [song.track intValue], song.artist, song.album, song.genre, song.filename, timeConverter.timeString];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nDuration: %@", [song.track intValue], song.artist, song.album, song.genre, song.filename, timeConverter.timeString];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyPlaylist *playlist = [[MyPlaylist allItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
+    Playlist *currentPlaylist = [Playlist currentPlaylist];
+    PlaylistItem *playlistItem = [[currentPlaylist allPlaylistItemsSortedByQueuePosition] objectAtIndex:indexPath.row];
+    currentPlaylist.currentPlaylistItem = playlistItem;
+    [currentPlaylist save];
     
-    [MyPlaylist setPlaylistToCurrent:playlist];
     [self start];
 }
 
@@ -151,7 +162,8 @@ $synthesize(playlistTable);
     
     [self setPlaylistText];
     
-    Song *currentSong = [MyPlaylist currentSong];
+    Playlist *currentPlaylist = [Playlist currentPlaylist];
+    Song *currentSong = currentPlaylist.currentPlaylistItem.song;
     if (currentSong == nil) return;
     
     NSString *urlString = [[NSString stringWithFormat:@"%@/databases/1/items/%i.mp3", kBaseUrl, [currentSong.song_id intValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -159,9 +171,8 @@ $synthesize(playlistTable);
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	self.streamer = [[AudioStreamer alloc] initWithURL:url];
-    NSLog(@"duration: %f", self.streamer.duration);
-    MyPlaylist *playlist = [MyPlaylist playlistItemForSong:currentSong];
-    if ([playlist.progress floatValue] > 0.f) [self.streamer setInitialStartPositionInPercent:[playlist.progress floatValue] totalFileLength: [currentSong.file_size intValue]];
+    
+    if ([currentPlaylist.currentPlaylistItem.progress floatValue] > 0.f) [self.streamer setInitialStartPositionInPercent:[currentPlaylist.currentPlaylistItem.progress floatValue] totalFileLength: [currentSong.file_size intValue]];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackStateChanged:) name:ASStatusChangedNotification object:self.streamer];
@@ -176,10 +187,13 @@ $synthesize(playlistTable);
     
     NSLog(@"state: %@, stopreason: %@, error: %@", [AudioStreamer stringForState:self.streamer.state], [AudioStreamer stringForStopReason:self.streamer.stopReason], [AudioStreamer stringForErrorCode:self.streamer.errorCode]);
     
-//    Song *currentSong = [MyPlaylist currentSong];
-//    if (currentSong != nil) {
-//        
-//    }
+    if (self.streamer.state == AS_PAUSED && self.streamer.stopReason == AS_INTERRUPTION) {
+        Playlist *currentPlaylist = [Playlist currentPlaylist];
+        Song *song = currentPlaylist.currentPlaylistItem.song;
+        float progress = (self.streamer.progress * 1000) / [song.song_length floatValue];
+        currentPlaylist.currentPlaylistItem.progress = [NSNumber numberWithFloat:progress];
+        [currentPlaylist.currentPlaylistItem save];
+    }
     
     if (self.streamer.state == AS_STOPPED && self.streamer.stopReason == AS_STOPPING_EOF) {
         [self playNextSong];
@@ -203,28 +217,12 @@ $synthesize(playlistTable);
     [self createStreamer];
 }
 
-- (void)playSong:(Song *)song {
-    [self.songQueue removeAllObjects];
-    [self.songQueue addObject:song];
-    [self setPlaylistText];
-    
-    [self playNextSong];
-}
-
-- (void)addSongToQueue:(Song *)song {
-    [self.songQueue addObject:song];
-    [self setPlaylistText];
-    
-    if (![self.streamer isPlaying]) {
-        [self playNextSong];
-    }
-}
-
 - (void)playNextSong {
     //if (self.songQueue.count == 0) return;
     
     //self.currentSong = [self.songQueue objectAtIndex:0];
-    [MyPlaylist currentSongDidFinish];
+    Playlist *currentPlaylist = [Playlist currentPlaylist];
+    [currentPlaylist skipToPlaylistItem:YES];
     [self createStreamer];
     
     //[self.songQueue removeObject:self.currentSong];
@@ -239,12 +237,17 @@ $synthesize(playlistTable);
     
     [self.playlistTable reloadData];
     
-    Song *currentSong = [MyPlaylist currentSong];
+    Playlist *currentPlaylist = [Playlist currentPlaylist];
+    Song *currentSong = currentPlaylist.currentPlaylistItem.song;
     if (currentSong != nil) {
         MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter]; 
         infoCenter.nowPlayingInfo = [NSDictionary dictionaryWithObjectsAndKeys:currentSong.title, MPMediaItemPropertyTitle,
          currentSong.artist, MPMediaItemPropertyArtist, currentSong.album, MPMediaItemPropertyAlbumTitle, nil];
     }
+}
+
+- (void)play {
+    [self start];
 }
 
 - (void)nextSong {

@@ -12,7 +12,7 @@
 #import "StreamerViewController.h"
 #import "Folder.h"
 #import "Song.h"
-#import "MyPlaylist.h"
+#import "Playlist+Extensions.h"
 #import "NSManagedObject+ActiveRecord.h"
 #import "NSManagedObjectContext+ActiveRecord.h"
 #import "UIView+Sizes.h"
@@ -220,7 +220,8 @@ $synthesize(streamerViewController);
     }
     else {
         Song *song = [self.songs objectAtIndex:indexPath.row];
-        [MyPlaylist replaceAndAddSong:song];
+        Playlist *currentPlaylist = [Playlist currentPlaylist];
+        [currentPlaylist addSongToList:song replace:YES];
         [self.streamerViewController start];
     }
 }
@@ -240,19 +241,21 @@ $synthesize(streamerViewController);
                 Folder *folder = [self.subfolders objectAtIndex:indexPath.row];
                 
                 if (buttonIndex == 0) {
-                    [MyPlaylist addFolderToQueue:folder recursively:YES];
+                    Playlist *currentPlaylist = [Playlist currentPlaylist];
+                    [currentPlaylist addFolderToList:folder recursively:YES replace:NO];
                     [self.streamerViewController updateUI];
                 }
             }
             else {
                 Song *song = [self.songs objectAtIndex:indexPath.row];
+                Playlist *currentPlaylist = [Playlist currentPlaylist];
                 
                 if (buttonIndex == 0) {
-                    [MyPlaylist addSongToQueue:song];
+                    [currentPlaylist addSongToList:song replace:NO];
                     [self.streamerViewController updateUI];
                 }
                 else if (buttonIndex == 1) {
-                    [MyPlaylist replaceAndAddSong:song];
+                    [currentPlaylist addSongToList:song replace:YES];
                     [self.streamerViewController start];
                 }
             }

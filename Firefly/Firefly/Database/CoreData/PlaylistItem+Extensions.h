@@ -1,18 +1,15 @@
 //
-//  Playlist.m
+//  PlaylistItem+Extensions.h
 //  Firefly
 //
 //  Created by kampfgnu on 5/4/12.
 //  Copyright (c) 2012 NOUS. All rights reserved.
 //
 
-#import "Playlist.h"
 #import "PlaylistItem.h"
 
+@interface PlaylistItem (Extensions)
 
-@implementation Playlist
-
-@dynamic item_id;
-@dynamic currentPlaylistItem;
+- (void)updateProgress:(float)progress;
 
 @end

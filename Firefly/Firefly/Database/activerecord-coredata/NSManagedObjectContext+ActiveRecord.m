@@ -112,7 +112,7 @@ static NSManagedObjectContext *defaultManageObjectContext = nil;
   BOOL saved = NO;
   @try
   {
-    NSLog(@"Saving Context%@", [NSThread isMainThread] ? @" *** on Main Thread ***" : @"");
+    //NSLog(@"Saving Context%@", [NSThread isMainThread] ? @" *** on Main Thread ***" : @"");
     saved = [self save:&error];
   }
   @catch (NSException *exception)

@@ -109,6 +109,7 @@
 
 - (id) inContext:(NSManagedObjectContext*)context;
 - (id) inThreadContext;
+- (void)save;
 
 #if TARGET_OS_IPHONE
 

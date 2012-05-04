@@ -6,10 +6,14 @@
         <relationship name="parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Playlist" representedClassName="Playlist" syncable="YES">
-        <attribute name="isCurrentSong" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="item_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currentPlaylistItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PlaylistItem" syncable="YES"/>
+    </entity>
+    <entity name="PlaylistItem" representedClassName="PlaylistItem" syncable="YES">
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="queue_position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="song_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="playlist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" syncable="YES"/>
+        <relationship name="song" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Song" syncable="YES"/>
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES">
         <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,7 +30,8 @@
     </entity>
     <elements>
         <element name="Folder" positionX="-20" positionY="216" width="128" height="75"/>
-        <element name="Playlist" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Playlist" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Song" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="PlaylistItem" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

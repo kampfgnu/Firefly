@@ -800,4 +800,8 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
     return [self inContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
+- (void)save {
+    [[NSManagedObjectContext contextForCurrentThread] save];
+}
+
 @end
