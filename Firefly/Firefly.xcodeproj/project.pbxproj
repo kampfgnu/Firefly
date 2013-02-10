@@ -51,6 +51,7 @@
 		FCBF3D9E154C6B5900C4FC97 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */; };
 		FCBF3DB2154C700900C4FC97 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */; };
 		FCBF3DB4154C701A00C4FC97 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBF3DB3154C701A00C4FC97 /* AVFoundation.framework */; };
+		FCBF669016C8132C003A22CF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FCBF668F16C8132C003A22CF /* README.md */; };
 		FCCD9C54154BD618001CD448 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCD9C53154BD618001CD448 /* libsqlite3.dylib */; };
 		FCCD9C82154BD673001CD448 /* Db.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCD9C81154BD673001CD448 /* Db.m */; };
 		FCCD9E38154BDEA3001CD448 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCD9E37154BDEA2001CD448 /* CoreData.framework */; };
@@ -141,6 +142,7 @@
 		FCBF3D9D154C6B5900C4FC97 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		FCBF3DB1154C700900C4FC97 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FCBF3DB3154C701A00C4FC97 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FCBF668F16C8132C003A22CF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		FCCD9C53154BD618001CD448 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FCCD9C80154BD673001CD448 /* Db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Db.h; sourceTree = "<group>"; };
 		FCCD9C81154BD673001CD448 /* Db.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Db.m; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		FC04EB48154AABDC002966F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCBF668F16C8132C003A22CF /* README.md */,
 				FC032506154AC3DF00111C68 /* mt-daapd.txt */,
 				FC04EB49154AABDC002966F7 /* Firefly-Info.plist */,
 				FC04EB4A154AABDC002966F7 /* InfoPlist.strings */,
@@ -476,6 +479,7 @@
 				FC032507154AC3DF00111C68 /* mt-daapd.txt in Resources */,
 				FC772A6D16C7E96D000D60EB /* FileBrowserViewController.xib in Resources */,
 				FC772A7016C7EBE0000D60EB /* SettingsViewController.xib in Resources */,
+				FCBF669016C8132C003A22CF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
