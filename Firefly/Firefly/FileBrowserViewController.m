@@ -19,6 +19,8 @@
 #import "UIView+Userdata.h"
 #import "KGTimeConverter.h"
 
+#import "Db.h"
+
 @interface FileBrowserViewController ()
 
 - (void)setTitleHeader;
@@ -71,6 +73,8 @@ $synthesize(streamerViewController);
     [super viewWillAppear:animated];
     
     [self reloadEntities];
+    
+    
 }
 
 - (void)viewDidUnload {

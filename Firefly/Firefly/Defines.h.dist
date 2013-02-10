@@ -1,0 +1,16 @@
+//
+//  Defines.h
+//  ImageProcessing
+//
+//  Created by kampfgnu on 4/20/12.
+//  Copyright (c) 2012 NOUS. All rights reserved.
+//
+
+#define kCoreDataFilename @"library.sqlite"
+
+#define kBasePort @"3689"
+#define kBasePath @"http://your_host"
+#define kBaseUrl [NSString stringWithFormat:@"%@:%@", kBasePath, kBasePort]
+#define kMTDAAPDServerDatabaseUrlPath [NSString stringWithFormat:@"%@:8080/public", kBasePath]
+#define kMTDAAPDServerDatabaseName @"songs3.db"
+#define kMTDAAPDiPhoneDatabaseName @"CoreDataStore.sqlite"

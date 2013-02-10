@@ -15,6 +15,8 @@
 #import "SettingsViewController.h"
 #import "StreamerViewController.h"
 
+#import "SongsViewController.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) StreamerViewController *streamerViewController;
@@ -36,14 +38,18 @@ $synthesize(streamerViewController);
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self.window becomeFirstResponder];
 
-    FileBrowserViewController *fileBrowserViewController = [[FileBrowserViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:fileBrowserViewController];
+    SongsViewController *vc = [[SongsViewController alloc] initWithStyle:UITableViewStylePlain listType:ListTypeArtists queryString:nil];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     nc.navigationBar.barStyle = UIBarStyleBlack;
+    
+//    FileBrowserViewController *fileBrowserViewController = [[FileBrowserViewController alloc] initWithNibName:@"FileBrowserViewController" bundle:[NSBundle mainBundle]];
+//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:fileBrowserViewController];
+//    nc.navigationBar.barStyle = UIBarStyleBlack;
     
 //    PlayerViewController *playerViewController = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
     self.streamerViewController = [[StreamerViewController alloc] initWithNibName:nil bundle:nil];
 //    fileBrowserViewController.playerViewController = playerViewController;
-    fileBrowserViewController.streamerViewController = self.streamerViewController;
+//    fileBrowserViewController.streamerViewController = self.streamerViewController;
     
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
     

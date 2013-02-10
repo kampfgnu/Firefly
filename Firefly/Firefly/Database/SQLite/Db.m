@@ -49,6 +49,22 @@ $synthesize(database);
 $synthesize(query);
 $synthesize(compiledStatement);
 
++ (Db *)sharedDb {
+    static dispatch_once_t once;
+    static id instance;
+    dispatch_once(&once, ^{instance = self.new;});
+    return instance;
+}
+
+- (id)init {
+	self.databaseName = kMTDAAPDServerDatabaseName;
+	self.databaseFilepath = [[NSFileManager documentsNoBackupDirectoryPath] stringByAppendingPathComponent:self.databaseName];
+	
+	//try to open db, else return
+	if([self openDatabase] == NO) exit(1);
+	return self;
+}
+
 - (id)initWithName:(NSString *)databaseName {
 	self.databaseName = databaseName;
 	self.databaseFilepath = [[NSFileManager documentsNoBackupDirectoryPath] stringByAppendingPathComponent:self.databaseName];
@@ -73,6 +89,72 @@ $synthesize(compiledStatement);
 
 - (void)closeDatabase {
 	sqlite3_close(database_);
+}
+
+- (NSMutableArray *)songsOfAlbum:(NSString *)album {
+     NSString *_query = [NSString stringWithFormat:@"select * from songs where album=\"%@\" order by track ASC", album];
+    query_ = [_query cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if(sqlite3_prepare_v2(database_, query_, -1, &compiledStatement_, NULL) == SQLITE_OK) {
+        while(sqlite3_step(compiledStatement_) == SQLITE_ROW) {
+            //            int songId = sqlite3_column_int(compiledStatement_, 0); //NSLog(@"song item: %i", songId);
+            
+            //            NSString *songArtist = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 4)];
+            //            NSLog(@"artist: %@", songArtist);
+//            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
+//            NSLog(@"artist: %@", songAlbum);
+            NSString *songTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 3)];
+            int songTrack = sqlite3_column_int(compiledStatement_, 19);
+            
+            [result addObject:[NSString stringWithFormat:@"%i - %@", songTrack, songTitle]];
+            //            NSString *songPath = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 1)];
+        }
+    }
+    
+    return result;
+}
+
+- (NSMutableArray *)albumsOfArtist:(NSString *)artist {
+    NSString *_query = [NSString stringWithFormat:@"select album from songs where artist=\"%@\" group by album", artist];
+    query_ = [_query cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if(sqlite3_prepare_v2(database_, query_, -1, &compiledStatement_, NULL) == SQLITE_OK) {
+        while(sqlite3_step(compiledStatement_) == SQLITE_ROW) {
+            //            int songId = sqlite3_column_int(compiledStatement_, 0); //NSLog(@"song item: %i", songId);
+            
+            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 0)];
+            [result addObject:songAlbum];
+            //            NSLog(@"artist: %@", songArtist);
+            //            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
+            //            NSLog(@"artist: %@", songAlbum);
+            //            NSString *songPath = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 1)];
+        }
+    }
+    
+    return result;
+}
+
+- (NSMutableArray *)artists {
+    NSString *_query = @"select artist from songs group by artist;";
+    query_ = [_query cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if(sqlite3_prepare_v2(database_, query_, -1, &compiledStatement_, NULL) == SQLITE_OK) {
+        while(sqlite3_step(compiledStatement_) == SQLITE_ROW) {
+//            int songId = sqlite3_column_int(compiledStatement_, 0); //NSLog(@"song item: %i", songId);
+            
+            NSString *songArtist = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 0)];
+            [result addObject:songArtist];
+//            NSLog(@"artist: %@", songArtist);
+//            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
+//            NSLog(@"artist: %@", songAlbum);
+//            NSString *songPath = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 1)];
+        }
+    }
+    
+    return result;
 }
 
 - (void)buildDatabase:(void(^)(float))callback {

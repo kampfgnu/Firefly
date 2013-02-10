@@ -2038,7 +2038,7 @@ cleanup:
 		if ([self isPlaying]) {
 			[self pause];
 			
-			self.pausedByInterruption = YES; 
+			self.pausedByInterruption = YES;
 		} 
         
         AudioSessionSetActive(false);

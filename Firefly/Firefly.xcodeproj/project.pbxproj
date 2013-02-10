@@ -22,8 +22,6 @@
 		FC04EB59154AABDC002966F7 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB58154AABDC002966F7 /* first@2x.png */; };
 		FC04EB5E154AABDC002966F7 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB5D154AABDC002966F7 /* second.png */; };
 		FC04EB60154AABDC002966F7 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB5F154AABDC002966F7 /* second@2x.png */; };
-		FC04EB63154AABDC002966F7 /* FileBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB61154AABDC002966F7 /* FileBrowserViewController.xib */; };
-		FC04EB66154AABDD002966F7 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB64154AABDC002966F7 /* SettingsViewController.xib */; };
 		FC04EB6E154AAC0B002966F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC04EB6C154AAC0B002966F7 /* Model.xcdatamodeld */; };
 		FC04EBD9154AB2EA002966F7 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FC04EB76154AB2EA002966F7 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC04EBDA154AB2EA002966F7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FC04EB78154AB2EA002966F7 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -39,6 +37,9 @@
 		FC04EBE4154AB2EA002966F7 /* AFNetworking.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */; };
 		FC04EBF4154AB2EA002966F7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBB0154AB2EA002966F7 /* LICENSE */; };
 		FC04EC00154AB2EA002966F7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FC04EBD0154AB2EA002966F7 /* README.md */; };
+		FC772A6D16C7E96D000D60EB /* FileBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC772A6B16C7E96D000D60EB /* FileBrowserViewController.xib */; };
+		FC772A7016C7EBE0000D60EB /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC772A6E16C7EBDF000D60EB /* SettingsViewController.xib */; };
+		FC772A8116C80275000D60EB /* SongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC772A8016C80275000D60EB /* SongsViewController.m */; };
 		FC91CFE21553C8E80052075B /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE11553C8E80052075B /* Folder.m */; };
 		FC91CFE71553D00D0052075B /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFE61553D00D0052075B /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FC91CFF61553E6460052075B /* KGTimeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91CFF51553E6460052075B /* KGTimeConverter.m */; };
@@ -89,8 +90,6 @@
 		FC04EB58154AABDC002966F7 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		FC04EB5D154AABDC002966F7 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		FC04EB5F154AABDC002966F7 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		FC04EB62154AABDC002966F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FileBrowserViewController.xib; sourceTree = "<group>"; };
-		FC04EB65154AABDD002966F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		FC04EB6D154AAC0B002966F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		FC04EB75154AB2EA002966F7 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		FC04EB76154AB2EA002966F7 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
@@ -118,6 +117,10 @@
 		FC04EB8C154AB2EA002966F7 /* AFNetworking.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = AFNetworking.xcworkspace; sourceTree = "<group>"; };
 		FC04EBB0154AB2EA002966F7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC04EBD0154AB2EA002966F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		FC772A6C16C7E96D000D60EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FileBrowserViewController.xib; sourceTree = "<group>"; };
+		FC772A6F16C7EBE0000D60EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		FC772A7F16C80274000D60EB /* SongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsViewController.h; sourceTree = "<group>"; };
+		FC772A8016C80275000D60EB /* SongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsViewController.m; sourceTree = "<group>"; };
 		FC91CFE01553C8E80052075B /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Folder.h; sourceTree = "<group>"; };
 		FC91CFE11553C8E80052075B /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Folder.m; sourceTree = "<group>"; };
 		FC91CFE51553D00D0052075B /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 		FC04EB47154AABDC002966F7 /* Firefly */ = {
 			isa = PBXGroup;
 			children = (
+				FC772A6E16C7EBDF000D60EB /* SettingsViewController.xib */,
+				FC772A6B16C7E96D000D60EB /* FileBrowserViewController.xib */,
 				FC91CFE41553D00D0052075B /* AudioStreamer */,
 				FCCD9E62154BE39F001CD448 /* Defines.h */,
 				FCCD9C83154BD727001CD448 /* Macros.h */,
@@ -245,12 +250,12 @@
 				FC00C1E0154D37A5002C05D7 /* StreamerViewController.m */,
 				FCBF3D99154C5EC800C4FC97 /* SettingsViewController.h */,
 				FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */,
+				FC772A7F16C80274000D60EB /* SongsViewController.h */,
+				FC772A8016C80275000D60EB /* SongsViewController.m */,
 				FC04EB56154AABDC002966F7 /* first.png */,
 				FC04EB58154AABDC002966F7 /* first@2x.png */,
 				FC04EB5D154AABDC002966F7 /* second.png */,
 				FC04EB5F154AABDC002966F7 /* second@2x.png */,
-				FC04EB61154AABDC002966F7 /* FileBrowserViewController.xib */,
-				FC04EB64154AABDC002966F7 /* SettingsViewController.xib */,
 				FC04EB48154AABDC002966F7 /* Supporting Files */,
 			);
 			path = Firefly;
@@ -433,7 +438,7 @@
 		FC04EB34154AABDC002966F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = NOUS;
 			};
 			buildConfigurationList = FC04EB37154AABDC002966F7 /* Build configuration list for PBXProject "Firefly" */;
@@ -464,13 +469,13 @@
 				FC04EB59154AABDC002966F7 /* first@2x.png in Resources */,
 				FC04EB5E154AABDC002966F7 /* second.png in Resources */,
 				FC04EB60154AABDC002966F7 /* second@2x.png in Resources */,
-				FC04EB63154AABDC002966F7 /* FileBrowserViewController.xib in Resources */,
-				FC04EB66154AABDD002966F7 /* SettingsViewController.xib in Resources */,
 				FC04EBE3154AB2EA002966F7 /* AFNetworking.podspec in Resources */,
 				FC04EBE4154AB2EA002966F7 /* AFNetworking.xcworkspace in Resources */,
 				FC04EBF4154AB2EA002966F7 /* LICENSE in Resources */,
 				FC04EC00154AB2EA002966F7 /* README.md in Resources */,
 				FC032507154AC3DF00111C68 /* mt-daapd.txt in Resources */,
+				FC772A6D16C7E96D000D60EB /* FileBrowserViewController.xib in Resources */,
+				FC772A7016C7EBE0000D60EB /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +523,7 @@
 				FC98A8671554182600D2A6E1 /* PlaylistItem.m in Sources */,
 				FC98A86E1554195800D2A6E1 /* Playlist+Extensions.m in Sources */,
 				FC98A871155419B400D2A6E1 /* Playlist.m in Sources */,
+				FC772A8116C80275000D60EB /* SongsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,18 +538,18 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		FC04EB61154AABDC002966F7 /* FileBrowserViewController.xib */ = {
+		FC772A6B16C7E96D000D60EB /* FileBrowserViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC04EB62154AABDC002966F7 /* en */,
+				FC772A6C16C7E96D000D60EB /* en */,
 			);
 			name = FileBrowserViewController.xib;
 			sourceTree = "<group>";
 		};
-		FC04EB64154AABDC002966F7 /* SettingsViewController.xib */ = {
+		FC772A6E16C7EBDF000D60EB /* SettingsViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC04EB65154AABDD002966F7 /* en */,
+				FC772A6F16C7EBE0000D60EB /* en */,
 			);
 			name = SettingsViewController.xib;
 			sourceTree = "<group>";
@@ -571,7 +577,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -589,7 +595,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -605,6 +611,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
@@ -622,6 +629,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Firefly/Firefly-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Firefly/Firefly-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;

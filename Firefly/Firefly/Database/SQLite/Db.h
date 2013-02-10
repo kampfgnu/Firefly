@@ -12,5 +12,10 @@
 
 - (id)initWithName:(NSString *)databaseName;
 - (void)buildDatabase:(void(^)(float))callback;
+- (NSMutableArray *)artists;
+- (NSMutableArray *)albumsOfArtist:(NSString *)artist;
+- (NSMutableArray *)songsOfAlbum:(NSString *)album;
+
++ (Db *)sharedDb;
 
 @end
