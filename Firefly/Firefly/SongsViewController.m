@@ -9,6 +9,14 @@
 #import "SongsViewController.h"
 #import "Db.h"
 
+#import "KGTimeConverter.h"
+#import "Song.h"
+#import "Playlist.h"
+#import "StreamerViewController.h"
+#import "Playlist+Extensions.h"
+#import "NSManagedObject+ActiveRecord.h"
+#import "NSManagedObjectContext+ActiveRecord.h"
+
 @interface SongsViewController ()
 
 @property (nonatomic, strong) NSMutableArray *objects;
@@ -25,15 +33,18 @@
         
         if (_listType == ListTypeArtists) {
             _objects = [[Db sharedDb] artists];
-            NSLog(@"artists: %@", _objects);
+            self.title = @"Artists";
+//            NSLog(@"artists: %@", _objects);
         }
         else if (_listType == ListTypeAlbums) {
             _objects = [[Db sharedDb] albumsOfArtist:queryString];
-            NSLog(@"albums: %@", _objects);
+            self.title = queryString;
+//            NSLog(@"albums: %@", _objects);
         }
         else if (_listType == ListTypeSongs) {
             _objects = [[Db sharedDb] songsOfAlbum:queryString];
-            NSLog(@"songs: %@", _objects);
+            self.title = queryString;
+//            NSLog(@"songs: %@", _objects);
         }
     }
     return self;
@@ -62,6 +73,16 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_listType == ListTypeAlbums || _listType == ListTypeArtists) {
+        return 44.f;
+    }
+    else {
+        return 144.f;
+    }
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _objects.count;
 }
@@ -70,10 +91,23 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        cell.detailTextLabel.numberOfLines = 0;
     }
-    cell.textLabel.text = [_objects objectAtIndex:indexPath.row];
     
+    if (_listType == ListTypeAlbums || _listType == ListTypeArtists) {
+        cell.textLabel.text = [_objects objectAtIndex:indexPath.row];
+    }
+    else {
+        Song *song = [_objects objectAtIndex:indexPath.row];
+        cell.textLabel.text = song.title;
+        
+        KGTimeConverter *timeConverter = [KGTimeConverter timeConverterWithNumber:song.song_length];
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Track: %i\nArtist: %@\nAlbum: %@\nGenre: %@\nFilename: %@\nDuration: %@", [song.track intValue], song.artist, song.album, song.genre, song.filename, timeConverter.timeString];
+    }
     return cell;
 }
 
@@ -125,15 +159,20 @@
     
     if (_listType == ListTypeArtists) {
         vc = [[SongsViewController alloc] initWithStyle:UITableViewStylePlain listType:ListTypeAlbums queryString:title];
+        
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (_listType == ListTypeAlbums) {
         vc = [[SongsViewController alloc] initWithStyle:UITableViewStylePlain listType:ListTypeSongs queryString:title];
+        
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (_listType == ListTypeSongs) {
-
+        Song *song = [_objects objectAtIndex:indexPath.row];
+        Playlist *currentPlaylist = [Playlist currentPlaylist];
+        [currentPlaylist addSongToList:song replace:NO];
+        [_streamerViewController start];
     }
-
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -236,8 +236,6 @@
 		FC04EB47154AABDC002966F7 /* Firefly */ = {
 			isa = PBXGroup;
 			children = (
-				FC772A6E16C7EBDF000D60EB /* SettingsViewController.xib */,
-				FC772A6B16C7E96D000D60EB /* FileBrowserViewController.xib */,
 				FC91CFE41553D00D0052075B /* AudioStreamer */,
 				FCCD9E62154BE39F001CD448 /* Defines.h */,
 				FCCD9C83154BD727001CD448 /* Macros.h */,
@@ -254,6 +252,8 @@
 				FCBF3D9A154C5EC800C4FC97 /* SettingsViewController.m */,
 				FC772A7F16C80274000D60EB /* SongsViewController.h */,
 				FC772A8016C80275000D60EB /* SongsViewController.m */,
+				FC772A6E16C7EBDF000D60EB /* SettingsViewController.xib */,
+				FC772A6B16C7E96D000D60EB /* FileBrowserViewController.xib */,
 				FC04EB56154AABDC002966F7 /* first.png */,
 				FC04EB58154AABDC002966F7 /* first@2x.png */,
 				FC04EB5D154AABDC002966F7 /* second.png */,

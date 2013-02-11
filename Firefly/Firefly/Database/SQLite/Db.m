@@ -98,16 +98,49 @@ $synthesize(compiledStatement);
     NSMutableArray *result = [NSMutableArray array];
     if(sqlite3_prepare_v2(database_, query_, -1, &compiledStatement_, NULL) == SQLITE_OK) {
         while(sqlite3_step(compiledStatement_) == SQLITE_ROW) {
-            //            int songId = sqlite3_column_int(compiledStatement_, 0); //NSLog(@"song item: %i", songId);
+            int songId = sqlite3_column_int(compiledStatement_, 0); //NSLog(@"song item: %i", songId);
+            
+//            NSString *songPath = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 1)];
+            NSString *songFilename = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 2)];
+            NSString *songTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 3)];
+            NSString *songArtist = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 4)];
+            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
+            NSString *songGenre = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 6)];
+            int songLength = sqlite3_column_int(compiledStatement_, 16);
+            int songFileSize = sqlite3_column_int(compiledStatement_, 17);
+            //                NSLog(@"kength: %i", songLength);
+            int songYear = sqlite3_column_int(compiledStatement_, 18);
+            int songTrack = sqlite3_column_int(compiledStatement_, 19);
+            
+            
+            Song *song = [Song createEntity];
+            song.song_id = [NSNumber numberWithInt:songId];
+            song.filename = songFilename;
+            song.title = songTitle;
+            song.artist = songArtist;
+            song.album = songAlbum;
+            song.genre = songGenre;
+            song.song_length = [NSNumber numberWithInt:songLength];
+            song.file_size = [NSNumber numberWithInt:songFileSize];
+            song.year = [NSNumber numberWithInt:songYear];
+            song.track = [NSNumber numberWithInt:songTrack];
+
+            
+            
+            
+            
+            
+            
+            
             
             //            NSString *songArtist = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 4)];
             //            NSLog(@"artist: %@", songArtist);
 //            NSString *songAlbum = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 5)];
 //            NSLog(@"artist: %@", songAlbum);
-            NSString *songTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 3)];
-            int songTrack = sqlite3_column_int(compiledStatement_, 19);
+//            NSString *songTitle = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 3)];
+//            int songTrack = sqlite3_column_int(compiledStatement_, 19);
             
-            [result addObject:[NSString stringWithFormat:@"%i - %@", songTrack, songTitle]];
+            [result addObject:song];
             //            NSString *songPath = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement_, 1)];
         }
     }

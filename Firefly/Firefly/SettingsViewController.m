@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "NSFileManager+KGiOSHelper.h"
 #import <dispatch/dispatch.h>
+#import "UIView+Sizes.h"
 
 @interface SettingsViewController ()
 
@@ -28,9 +29,9 @@ $synthesize(actions);
     self = [super initWithStyle:style];
     if (self) {
         self.actions = [NSMutableArray array];
-        [self.actions addObject:@"Reload database"];
         [self.actions addObject:@"Download songs3.db"];
-        [self.actions addObject:@"Download coredatasqlite"];
+//        [self.actions addObject:@"Reload database"];
+//        [self.actions addObject:@"Download coredatasqlite"];
     }
     return self;
 }
@@ -62,6 +63,8 @@ $synthesize(actions);
         cell.detailTextLabel.text = @"                                                     ";
         UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         progressView.tag = indexPath.row + 666;
+        progressView.left += 80;
+        progressView.width = 100;
         [cell.detailTextLabel addSubview:progressView];
     }
     
@@ -76,15 +79,17 @@ $synthesize(actions);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIProgressView *progressView = (UIProgressView *)[cell.detailTextLabel viewWithTag:indexPath.row + 666];
     
+//    if (indexPath.row == 0) {
+//        Db *db = [[Db alloc] initWithName:kMTDAAPDServerDatabaseName];
+//        [db buildDatabase:^(float progress) {
+////            NSLog(@"progress: %f", progress);
+//            progressView.progress = progress;
+//            if (progress == 1.0f) progressView.progress = 0.0f;
+//        }];
+//    }
     if (indexPath.row == 0) {
-        Db *db = [[Db alloc] initWithName:kMTDAAPDServerDatabaseName];
-        [db buildDatabase:^(float progress) {
-//            NSLog(@"progress: %f", progress);
-            progressView.progress = progress;
-            if (progress == 1.0f) progressView.progress = 0.0f;
-        }];
-    }
-    else if (indexPath.row == 1) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
         NSURL *baseURL = [NSURL URLWithString:[kMTDAAPDServerDatabaseUrlPath stringByAppendingPathComponent:kMTDAAPDServerDatabaseName]];
         NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -93,6 +98,7 @@ $synthesize(actions);
             if (response) {
                 [NSFileManager writeDataToNoBackupDirectory:response filename:kMTDAAPDServerDatabaseName];
             }
+            cell.detailTextLabel.text = @"done";
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@", error);                                    
         }];
@@ -105,27 +111,27 @@ $synthesize(actions);
 
         [operation start];
     }
-    else if (indexPath.row == 2) {
-        NSURL *baseURL = [NSURL URLWithString:[kMTDAAPDServerDatabaseUrlPath stringByAppendingPathComponent:kMTDAAPDiPhoneDatabaseName]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-            NSLog(@"success");
-            if (response) {
-                [NSFileManager writeDataToDocumentsDirectory:response filename:kMTDAAPDiPhoneDatabaseName];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", error);                                    
-        }];
-        
-        [operation setDownloadProgressBlock:^(NSInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead) {
-            float progress = (float)totalBytesRead/(float)totalBytesExpectedToRead;
-            progressView.progress = progress;
-            if (progress == 1.0f) progressView.progress = 0.0f;
-        }];
-        
-        [operation start];
-    }
+//    else if (indexPath.row == 2) {
+//        NSURL *baseURL = [NSURL URLWithString:[kMTDAAPDServerDatabaseUrlPath stringByAppendingPathComponent:kMTDAAPDiPhoneDatabaseName]];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:baseURL];
+//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+//            NSLog(@"success");
+//            if (response) {
+//                [NSFileManager writeDataToDocumentsDirectory:response filename:kMTDAAPDiPhoneDatabaseName];
+//            }
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"%@", error);                                    
+//        }];
+//        
+//        [operation setDownloadProgressBlock:^(NSInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead) {
+//            float progress = (float)totalBytesRead/(float)totalBytesExpectedToRead;
+//            progressView.progress = progress;
+//            if (progress == 1.0f) progressView.progress = 0.0f;
+//        }];
+//        
+//        [operation start];
+//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

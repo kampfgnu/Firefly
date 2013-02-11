@@ -49,7 +49,7 @@ $synthesize(streamerViewController);
 //    PlayerViewController *playerViewController = [[PlayerViewController alloc] initWithNibName:nil bundle:nil];
     self.streamerViewController = [[StreamerViewController alloc] initWithNibName:nil bundle:nil];
 //    fileBrowserViewController.playerViewController = playerViewController;
-//    fileBrowserViewController.streamerViewController = self.streamerViewController;
+    vc.streamerViewController = self.streamerViewController;
     
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
     

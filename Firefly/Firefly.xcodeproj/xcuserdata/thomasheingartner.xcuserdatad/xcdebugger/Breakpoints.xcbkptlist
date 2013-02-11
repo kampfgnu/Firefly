@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Firefly/Database/SQLite/Db.m"
-         timestampString = "382208170.561279"
+         timestampString = "382220430.781539"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "181"
+         endingLineNumber = "181"
          landmarkName = "-artists"
          landmarkType = "5">
       </FileBreakpoint>

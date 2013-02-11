@@ -64,8 +64,8 @@ $synthesize(playlistTable);
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     nextButton.frame = CGRectMake(320 - 50, 5, 40, 40);
-    [nextButton addTarget:self action:@selector(nextSong) forControlEvents:UIControlEventTouchUpInside];
-    [nextButton setTitle:@">>" forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setTitle:@"||" forState:UIControlStateNormal];
     [self.view addSubview:nextButton];
     
     playlistTable_ = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 320, 350) style:UITableViewStylePlain];
@@ -81,6 +81,12 @@ $synthesize(playlistTable);
 }
 
 - (void)updateUI {
+    [self.playlistTable reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     [self.playlistTable reloadData];
 }
 
@@ -197,7 +203,7 @@ $synthesize(playlistTable);
     
     NSLog(@"state: %@, stopreason: %@, error: %@", [AudioStreamer stringForState:self.streamer.state], [AudioStreamer stringForStopReason:self.streamer.stopReason], [AudioStreamer stringForErrorCode:self.streamer.errorCode]);
     
-    if (self.streamer.state == AS_PAUSED && self.streamer.stopReason == AS_INTERRUPTION) {
+    if (self.streamer.state == AS_PAUSED || self.streamer.stopReason == AS_INTERRUPTION) {
         Playlist *currentPlaylist = [Playlist currentPlaylist];
         Song *song = currentPlaylist.currentPlaylistItem.song;
         float progress = (self.streamer.progress * 1000) / [song.song_length floatValue];
@@ -262,6 +268,10 @@ $synthesize(playlistTable);
 
 - (void)nextSong {
     [self playNextSong];
+}
+
+- (void)pause {
+    [self.streamer pause];
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)receivedEvent {

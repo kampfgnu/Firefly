@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class StreamerViewController;
+
 typedef enum {
     ListTypeArtists,
     ListTypeAlbums,
@@ -17,5 +19,7 @@ typedef enum {
 @interface SongsViewController : UITableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style listType:(ListType)listType queryString:(NSString *)queryString;
+
+@property (nonatomic, unsafe_unretained) StreamerViewController *streamerViewController;
 
 @end
